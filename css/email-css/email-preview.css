@@ -1,0 +1,16 @@
+.preview-details{
+    cursor: pointer;
+}
+
+.readed{
+    color: white;
+    background-color: rgb(88, 88, 88);
+}
+.unread{
+    color: white;
+    background-color: black;
+}
+.icon-readed{
+    background-color: white;
+    width: max-content;
+}
