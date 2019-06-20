@@ -1,7 +1,14 @@
+
+.list-emails button{
+    cursor: pointer;
+}
+.list-emails li{
+    list-style: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 .preview-details{
     cursor: pointer;
 }
-
 .readed{
     color: white;
     background-color: rgb(88, 88, 88);

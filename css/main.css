@@ -1,2 +1,7 @@
 @import './note-css/note-main.css';
+@import './email-css/email-main.css';
 
+body{
+    margin: 0;
+    padding: 0;
+}
