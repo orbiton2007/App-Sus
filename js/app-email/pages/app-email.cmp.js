@@ -24,24 +24,38 @@ export default {
                 this.emails = emails;
             })
     },
-    computed:{
-        unReadEmails(){
+    computed: {
+        unReadEmails() {
             return emailService.getEmailsUnreadedCount(this.emails)
         },
-        emailsToShow(){
-            if(!this.filter) return this.emails;
-            let emails = this.emails.filter(email => {
-                if(email.subject.toLowerCase().includes(this.filter.txt.toLowerCase()) || email.name.toLowerCase().includes(this.filter.txt.toLowerCase())) return email;
-            })
-            return emails;
+        emailsToShow() {
+            let emails;
+            if (!this.filter) return this.emails;
+            if (this.filter.txt) {
+                emails = this.emails.filter(email => {
+                    if (email.subject.toLowerCase().includes(this.filter.txt.toLowerCase()) || email.name.toLowerCase().includes(this.filter.txt.toLowerCase())) return email;
+                })
+                return emails;
+            }
+            else if (this.filter.readed) {
+                emails = this.emails.filter(email => {
+                    if (email.isRead) return email;
+                })
+            }
+            else if (this.filter.unread) {
+                emails = this.emails.filter(email => {
+                    if (!email.isRead) return email;
+                })
+            }
+            return emails
         }
     },
-    methods:{
-        setFilter(filter){
+    methods: {
+        setFilter(filter) {
             this.filter = filter;
         }
     },
-    components:{
+    components: {
         emailList,
         emailFilter
     }
