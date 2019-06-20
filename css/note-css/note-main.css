@@ -1,0 +1,19 @@
+.note{
+    background-color: lightblue;
+}
+
+.note-img img{
+    height: 100px;
+    width: 100px;
+}
+
+.note-txt textarea{
+    resize: none;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+.todo-done{
+    text-decoration-line: line-through;
+}
