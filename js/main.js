@@ -9,6 +9,7 @@ var app = new Vue({
     el: '#app',
     template: `
         <main>
+            <router-link to="/">Home</router-link>
             <router-view></router-view>
         </main>
     `,
