@@ -1,6 +1,6 @@
 
 import noteService from "../services/notes-service.js"
-import storageService from "./../../global/services/storage.service.js"
+import storageService from "../services/storage.service.js"
 import utilService from "./../../global/services/util.service.js"
 
 import noteTxt from "../cmps/note-txt.cmp.js"
@@ -15,8 +15,13 @@ export default {
         <button @click="addTxtNote()">+add TXT note</button>
         <button @click="addTodoNote()">+add TODO note</button>
         <button @click="addImgNote()">+add IMG note</button>
-        <section v-for="(note,idx) in notes">
-            <component :is="note.type" :note="note" :noteIdx="idx"/>
+
+        <section v-for="(note,idx) in notesPinned" :key="render">
+            <component :is="note.type" :note="note" @pinEv="pinned"/>
+        </section>
+        ----------------------------------------------------
+        <section v-for="(note,idx) in notes" :key="render">
+            <component :is="note.type" :note="note" @pinEv="pinned"/>
         </section>
     </section>
     `,
@@ -24,15 +29,18 @@ export default {
     data() {
         return {
             notes: null,
-            counter: 1
+            notesPinned: null,
+            counter: 1,
+            render
         }
     },
     created() {
         // get notes from localStorage
         noteService.getNotes()
             .then((notes) => {
-                this.notes = notes;
                 console.log('notes from storage:', notes);
+                this.notes = notes.filter((note)=>!note.isPinned);
+                this.notesPinned = notes.filter((note)=>note.isPinned);
             })
 
     },
@@ -43,24 +51,39 @@ export default {
 
     },
     methods: {
+        pinned(id){
+            console.log('pin event',id);
+            noteService.togglePin(id);
+             
+        },
         addTxtNote(){
-            console.log('txt');
+            // console.log('txt');
             this.counter++;
-            // let obj = {};
-            // obj = { ...{ id: utilService.makeId() ,txt: 'this is my note!', type: 'note-txt', bcg: 'red' } };
+            // fix the bug! ps. its ok after refresh
             noteService.getNotes()
                 .then((notes) => {
-                    notes.unshift({ id: utilService.makeId() ,txt: 'this is my note!' + this.counter, type: 'note-txt', bcg: 'red' });
+                    notes.unshift({ id: utilService.makeId() ,txt: 'this is my note!' + this.counter, type: 'note-txt', bcg: 'red' ,isPinned:false});
                     //improve: is there an option to get and save only 1 params instead of all array?
                     storageService.store('notes', notes)
             })
             
         },
         addTodoNote(){
+            noteService.getNotes()
+            .then((notes) => {
+                notes.unshift({ id: utilService.makeId() ,txt: 'Hi! Im new list!', todos: [{ txt: 'todo number 1', isDone: false }, { txt: 'todo number 2', isDone: false }], type: 'note-todo', bcg: null ,isPinned:false});
+                //improve: is there an option to get and save only 1 params instead of all array?
+                storageService.store('notes', notes)
+        })
 
         },
         addImgNote(){
-
+            noteService.getNotes()
+            .then((notes) => {
+                notes.unshift({id: utilService.makeId() ,txt: 'Hi! Im new image note! :)', img: "./../../../img/milk.jpg", type: 'note-img', bcg: null ,isPinned:false});
+                //improve: is there an option to get and save only 1 params instead of all array?
+                storageService.store('notes', notes)
+        })
         },
     },
     components: {

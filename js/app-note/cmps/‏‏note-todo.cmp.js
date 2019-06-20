@@ -1,4 +1,4 @@
-import storageService from "./../../global/services/storage.service.js"
+import storageService from "../services/storage.service.js"
 import noteService from "../services/notes-service.js"
 
 

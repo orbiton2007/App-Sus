@@ -6,7 +6,7 @@ function store(key, any) {
 
 function load(key) {
     var str = localStorage[key] || 'null';
-    return Promise.resolve(JSON.parse(str)); 
+    return JSON.parse(str); 
 }
 
 export default {
