@@ -10,6 +10,8 @@ var app = new Vue({
     template: `
         <main>
             <router-link to="/">Home</router-link>
+            <router-link to="/emails">App Email</router-link>
+            <router-link to="/notes">App Note</router-link>
             <router-view></router-view>
         </main>
     `,
