@@ -5,16 +5,21 @@ import noteService from "../services/notes-service.js"
 export default {
 
     template: `
-    <section class="note note-txt"> 
+    <section class="note note-txt" :style="getStyle"> 
         <h3>NOTE TXT</h3>
         <p>
-           <!-- {{note.txt}} -->
-           <!-- <input type="text" v-model="editable"  /> -->
-           <textarea v-model="editable" cols="30" rows="10"></textarea>
+          
+           <!-- <input type="text" v-model="editable"/> -->
+           <textarea v-model="editable" cols="30" rows="8" @input.nativ="save()"></textarea>
+            ---
+            {{note.txt}}
         </p>
+
+        <input type="color" ref="bcgColorPicker" @change.nativ="changeBcg()"/>
+        <button @click="deleteNote()" class="del-btn">X</button>
     </section>
     `,
-    props: ['note','noteIdx'],
+    props: ['note'],
     data() {
         return {
             editable: this.note.txt
@@ -23,21 +28,29 @@ export default {
     created() {
 
     },
-    watch: {
-        editable(){
-            noteService.getNotes()
-                .then((notes)=>{
-                    // console.log('saved');
-                    notes[this.noteIdx].txt = this.editable;
-                    //improve: is there an option to get and save only 1 params instead of all array?
-                    storageService.store('notes',notes)
-                })
-        }
-    },
+    // watch: {
+    //     editable(){
+
+    //         // noteService.editNoteTxt(this.note.id, this.editable);
+    //     }
+    // },
     computed: {
+        getStyle(){
+            return `background-color:${this.note.bcg}`
+        }
 
     },
     methods: {
+        changeBcg() {
+            let color = this.$refs.bcgColorPicker.value;
+            noteService.changeNoteBcg(this.note.id,color)
+        },
+        deleteNote(){
+            noteService.del(this.note.id);
+        },
+        save(){
+            noteService.editNoteTxt(this.note.id, this.editable);
+        }
 
     },
     components: {

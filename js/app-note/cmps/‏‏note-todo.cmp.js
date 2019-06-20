@@ -5,13 +5,13 @@ import noteService from "../services/notes-service.js"
 export default {
 
     template: `
-    <section class="note note-todo"> 
+    <section class="note note-todo" :style="getStyle"> 
         <h3>NOTE TO-DO</h3>
         <p>
             {{note.txt}}
         </p>
 
-        <input type="text" id="input" placeholder="Enter todo here"/> <button @click.stop="addTodo()">+</button>
+        <input type="text" ref="input" placeholder="Enter todo here"/> <button @click.stop="addTodo()">+</button>
         <ul>
             <li v-for="(todo,idx) in note.todos"
                 @click.nativ="toggleDone(idx)" 
@@ -21,9 +21,12 @@ export default {
                 <button @click.stop="deleteTodo(idx)">x</button>
             </li>
         </ul>
+
+        <input type="color" ref="bcgColorPicker" @change.nativ="changeBcg()"/>
+        <button @click="deleteNote()" class="del-btn">X</button>
     </section>
     `,
-    props: ['note', 'noteIdx'],
+    props: ['note'],
     data() {
         return {
         }
@@ -35,43 +38,55 @@ export default {
 
     },
     computed: {
+        getStyle(){
+            return `background-color:${this.note.bcg}`
+        }
 
     },
     methods: {
-        toggleDone(idx) {
+        toggleDone(todoIdx) {
             // console.log(this.note.todos[idx].isDone);
             noteService.getNotes()
                 .then((notes) => {
                     // console.log('saved');
-                    notes[this.noteIdx].todos[idx].isDone = !this.note.todos[idx].isDone;
+                    let idx = notes.findIndex(note=> note.id === this.note.id);
+                    notes[idx].todos[todoIdx].isDone = !this.note.todos[todoIdx].isDone;
                     //improve: is there an option to get and save only 1 params instead of all array?
                     storageService.store('notes', notes)
                 })
         },
-        deleteTodo(idx) {
+        deleteTodo(todoIdx) {
             noteService.getNotes()
                 .then((notes) => {
                     // console.log('saved');
-                    notes[this.noteIdx].todos.splice(idx, 1);
+                    let idx = notes.findIndex(note=> note.id === this.note.id);
+                    notes[idx].todos.splice(todoIdx, 1);
                     //improve: is there an option to get and save only 1 params instead of all array?
                     storageService.store('notes', notes)
                 })
         },
         addTodo() {
-            // dont use dqs use ref
-            let newTxt = document.querySelector('#input').value;
+            let newTxt = this.$refs.input.value;
             // console.log(newTxt);
 
             noteService.getNotes()
                 .then((notes) => {
                     // console.log('saved');
-                    notes[this.noteIdx].todos.unshift({ txt: newTxt, isDone: false });
+                    let idx = notes.findIndex(note=> note.id === this.note.id);
+                    notes[idx].todos.unshift({ txt: newTxt, isDone: false });
                     //improve: is there an option to get and save only 1 params instead of all array?
                     storageService.store('notes', notes)
                 })
                 
-            document.querySelector('#input').value = '';
-        }
+                this.$refs.input.value = '';
+        },
+        changeBcg() {    
+            let color = this.$refs.bcgColorPicker.value;
+            noteService.changeNoteBcg(this.note.id,color)
+        },
+        deleteNote(){
+            noteService.del(this.note.id);
+        },
     },
     components: {
 
