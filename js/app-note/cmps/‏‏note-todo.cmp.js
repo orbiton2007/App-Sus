@@ -11,7 +11,7 @@ export default {
             {{note.txt}}
         </p>
 
-        <input type="text" ref="input" placeholder="Enter todo here"/> <button @click.stop="addTodo()">+</button>
+        <input type="text" ref="input" placeholder="Enter todo here"/> <button @click.stop="addTodo()">➕</button>
         <ul>
             <li v-for="(todo,idx) in note.todos"
                 @click.nativ="toggleDone(idx)" 
@@ -23,7 +23,9 @@ export default {
         </ul>
 
         <input type="color" ref="bcgColorPicker" @change.nativ="changeBcg()"/>
-        <button @click="deleteNote()" class="del-btn">X</button>
+        <button @click="deleteNote()" class="del-btn">🗑️</button>
+        <button @click="pinNote()" class="pin-btn">📌</button>
+
     </section>
     `,
     props: ['note'],
@@ -31,8 +33,8 @@ export default {
         return {
         }
     },
-    created() {
-
+    mounted() {
+        this.$refs.bcgColorPicker.value = this.note.bcg
     },
     destroyed() {
 
@@ -84,8 +86,13 @@ export default {
             let color = this.$refs.bcgColorPicker.value;
             noteService.changeNoteBcg(this.note.id,color)
         },
+        pinNote(){
+            console.log('emit');  
+            this.$emit('pinEv', this.note.id)
+        },
         deleteNote(){
-            noteService.del(this.note.id);
+            console.log('emit');
+            this.$emit('del', this.note.id)
         },
     },
     components: {

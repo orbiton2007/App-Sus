@@ -1,3 +1,10 @@
+export default {
+    getRandomInt,
+    makeLorem,
+    makeId,
+    getRandomColor
+}
+
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -31,11 +38,7 @@ function makeLorem(length) {
     return randStr;
 }
 
-export default {
-    getRandomInt,
-    makeLorem,
-    makeId
-}
+
 
 
 function getRandChar() {
@@ -53,3 +56,12 @@ function createWord(length) {
 
     return word;
 }
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }

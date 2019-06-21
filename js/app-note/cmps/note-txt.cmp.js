@@ -7,44 +7,30 @@ export default {
     template: `
     <section class="note note-txt" :style="getStyle"> 
         <h3>NOTE TXT</h3>
-        <p>
-          
-           <!-- <input type="text" v-model="editable"/> -->
-           <textarea v-model="editable" cols="30" rows="8" @input.nativ="save()" name="getName"></textarea>
-            ---
+        <!-- <textarea ref="area" v-model="editable" cols="30" rows="8" @input.nativ="save()" name="getName"></textarea> -->
+        
+        <p contenteditable="true" @input.nativ="saveTxt()" ref="content">
             {{note.txt}}
         </p>
 
         <input type="color" ref="bcgColorPicker" @change.nativ="changeBcg()"/>
-        <button @click="deleteNote()" class="del-btn">X</button>
-        <button @click="pinNote()" class="pin-btn">#</button>
+        <button @click="onDelete()" class="del-btn">🗑️</button>
+        <button @click="pinNote()" class="pin-btn">📌</button>
 
     </section>
     `,
     props: ['note'],
     data() {
         return {
-            editable: this.note.txt,
-   
-            
         }
     },
-    created() {
-
+    mounted() {
+        this.$refs.bcgColorPicker.value = this.note.bcg
     },
-    // watch: {
-    //     editable(){
-
-    //         // noteService.editNoteTxt(this.note.id, this.editable);
-    //     }
-    // },
     computed: {
         getStyle(){
             return `background-color:${this.note.bcg}`
         },
-        getName(){
-            return utilService.makeId();
-        }
 
     },
     methods: {
@@ -52,19 +38,19 @@ export default {
             let color = this.$refs.bcgColorPicker.value;
             noteService.changeNoteBcg(this.note.id,color)
         },
-        deleteNote(){
-            noteService.del(this.note.id);
+        onDelete(){
+            console.log('emit');
+            this.$emit('del', this.note.id)
         },
         pinNote(){
-            console.log('emit');
-            
+            console.log('emit');  
             this.$emit('pinEv', this.note.id)
-
-            //render??
         },
-        save(){
-            noteService.editNoteTxt(this.note.id, this.editable);
-        }
+        saveTxt(){
+            // console.log('save',this.$refs.content.innerText);
+            noteService.editNoteTxt(this.note.id, this.$refs.content.innerText);
+        },
+       
 
     },
     components: {
