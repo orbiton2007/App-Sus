@@ -1,45 +1,71 @@
-import emailService from "../services/email-service.js";
-
+import emailService from '../services/email-service.js';
+import emailDetails from './email-details.cmp.js'
 
 export default {
-    template:`
+    template: `
+    <div class="flex column">
             <li :class="isEmailReaded">
-                <div class="preview-details" @click="getDetails(email)">
-                    <span>{{email.name}}</span>
-                    <span>{{email.subject}}</span>
-                    <span>{{email.sentAt}}</span>
+                <div class="flex space-between">
+                    <div class="div-star-details flex">
+                        <span><img class="icon-star" @click="markFavorite(email)" :src="favorite"></span>
+                        <div @click="getDetails(email)" class="preview-details flex space-between">
+                            <span>{{email.name}}</span>
+                            <span>{{email.subject}}</span>
+                            <span>{{email.sentAt}}</span>
+                        </div>
+                    </div>
+                    <div class="flex email-imgs-preview">
+                        <div><img class="icon-readed" @click="markReaded(email)" :src="image"></div>
+                        <div><img class="icon-trash" src="css/email-css/images/trash.png" @click="removeEmail(email.id)"></div>
+                    </div>
                 </div>
-                <div class="icon-readed"><img @click="markReaded(email)" :src="image" width="20"></div>
-                <div><button @click="removeEmail(email.id)">X</button></div>
             </li>
+            <div>
+                <email-details v-if="show" :emailId="emailId"></email-details>
+            </div>
+    </div>
     `,
-    props:['email'],
-    data(){
-        return{
-            isEmailReaded: 'unread',
-            image: 'css/email-css/images/envelope.png'
+    props: ['email'],
+    data() {
+        return {
+            emailId: '',
+            show: false
         }
     },
-    created(){
-        
+    created() {
     },
-    computed:{
-    },
-    methods:{
-        getDetails(email){
-            console.log('readedddddd', email);
-            email.isRead = true;
-            this.isEmailReaded = 'readed'
-            this.$router.push(`/email/${email.id}`)
+    computed: {
+        isEmailReaded(){
+            return this.email.isRead ? 'readed' : 'unread'
         },
-        removeEmail(emailId){
+        favorite(){
+            return this.email.isFavorite ? 'css/email-css/images/favourites.png' : 'css/email-css/images/white-star.png'
+        },
+        image(){
+            return this.email.isRead ? 'css/email-css/images/mail.png' : 'css/email-css/images/mail-unread.png'
+        }
+    },
+    methods: {
+        getDetails(email) {
+                this.show = !this.show
+                this.emailId = email.id 
+                email.isRead = true;
+                emailService.saveToStorage()
+        },
+        removeEmail(emailId) {
             emailService.removeEmail(emailId)
         },
-        markReaded(email){
-            this.image = 'css/email-css/images/email.png';
-            email.isRead = true;
-            this.isEmailReaded = 'readed'
+        markReaded(email) {
+            email.isRead = !email.isRead;
+            emailService.saveToStorage()
+        },
+        markFavorite(email){
+            email.isFavorite = !email.isFavorite;
+            emailService.saveToStorage();
         }
+    },
+    components:{
+        emailDetails
     }
-    
+
 }

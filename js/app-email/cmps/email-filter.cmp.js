@@ -2,19 +2,20 @@
 
 export default {
     template:`
-        <section class="filter-container">
-            <div class="filter-input">
-                <input type="text" placeholder="Search Email..." v-model="filter.txt" @keyup="emitFilter">
-            </div>
-            <div class="read-unread-btns">
+        <section class="email-filter-container flex">
+            <div class="filter-btns">
+                <button @click="emitFilterAll">All</button>
                 <button @click="emitFilterReaded">Readed</button>
                 <button @click="emitFilterUnreaded">Unread</button>
+            </div>
+            <div class="filter-input">
+                <input type="text" placeholder="Search Email..." v-model="filter.txt" @keyup="emitFilter">
             </div>
         </section>
     `,
     data(){
         return{
-            filter: {txt: '', readed: false, unread: false}
+            filter: {txt: '', readed: false, unread: false, all: false}
         }
     },
     created(){
@@ -29,13 +30,21 @@ export default {
         },
         emitFilterReaded(){
             this.filter.readed = true;
-            this.$emit('set-filter', this.filter)
             this.filter.unread = false;
+            this.filter.all = false;
+            this.$emit('set-filter', this.filter)
         },
         emitFilterUnreaded(){
             this.filter.unread = true;
-            this.$emit('set-filter', this.filter)
             this.filter.readed = false;
+            this.filter.all = false;
+            this.$emit('set-filter', this.filter)
+        },
+        emitFilterAll(){
+            this.filter.all = true;
+            this.filter.readed = false;
+            this.filter.unread = false;
+            this.$emit('set-filter', this.filter)
         }
     }
 }

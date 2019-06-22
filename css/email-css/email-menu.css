@@ -1,0 +1,63 @@
+
+.status-container{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.860);
+    border: 0.5px white solid;
+}
+.status-container *{
+    width: max-content;
+    margin: 0 auto;
+}
+.status-container .compose-link{
+    width: 100%;
+    cursor: pointer;
+}
+.status-container .compose-link:hover{
+    background-color: royalblue;
+}
+.status-container h2{
+    font-size: 1.8rem;
+    margin: 0 auto;
+    padding-top: 22px;
+    padding-bottom: 38px;
+    
+}
+.status-container .div-unread-email{
+    width: 100%;
+    border-bottom: 0.5px white solid;
+    border-top: 0.5px white solid;
+    cursor: pointer;
+}
+.status-container .div-unread-email:hover{
+    background-color: royalblue;
+}
+.status-container .unread-email{
+    font-size: 1.4rem;
+    padding-bottom: 12px;
+    padding-top: 10px;
+}
+
+.status-container .unread-count{
+    font-size: 0.8rem;
+    color: red;
+}
+
+.status-container .div-starred{
+    cursor: pointer;
+    width: 100%;
+    border-bottom: 0.5px white solid;
+    border-top: 0.5px white solid;
+}
+.status-container .div-starred:hover{
+    background-color: royalblue;
+}
+.status-container .starred{
+    font-size: 1.4rem;
+    padding-bottom: 12px;
+    padding-top: 10px;
+}
+.icon-star{
+    width: 23px;
+    margin-left: 3px;
+}

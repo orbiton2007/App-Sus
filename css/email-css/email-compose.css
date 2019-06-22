@@ -1,0 +1,38 @@
+
+.sec-compose{
+    position: fixed;
+    bottom: 0;
+    left: 30px;
+    width: 450px;
+    height: 500px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.952);
+    border: 0.5px white solid;
+    color: white;
+    z-index: 11111;
+ }
+ .sec-compose .btn-close{
+     float: right;
+     padding: 5px;
+ }
+ .sec-compose h3{
+    margin-top: 5px;
+}
+ .sec-compose input{
+    padding: 5px;
+    border: 0.5px white solid;
+    border-radius: 3px;
+    color: black;
+    font-size: 1rem;
+}
+.sec-compose textarea{
+    border-radius: 3px;
+ }
+ .sec-compose button{
+    background-color: rgba(0, 0, 0, 0.884);
+    border: 0.5px white solid;
+    color: white;
+    border-radius: 3px;
+    padding: 10px;
+    cursor: pointer;
+ }

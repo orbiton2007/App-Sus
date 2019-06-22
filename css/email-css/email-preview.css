@@ -3,21 +3,45 @@
     cursor: pointer;
 }
 .list-emails li{
-    list-style: none;
+    border: 0.5px white solid;
+    margin: 0;
+    font-size: 1.1rem;
+    padding: 8px;
+    list-style-type: none;
+    margin-bottom: 5px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.list-emails li:hover{
+    transition: 0.4s;
+    transform: scale(1.005);
+    
+}
+.div-star-details{
+    width: 85%;
 }
 .preview-details{
     cursor: pointer;
+    width: 75%;
 }
 .readed{
     color: white;
-    background-color: rgb(88, 88, 88);
+    background-color: rgba(88, 88, 88, 0.877);
 }
 .unread{
     color: white;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.860);
 }
-.icon-readed{
-    background-color: white;
-    width: max-content;
+.icon-star{
+    width: 20px;
+    cursor: pointer;
+    margin-right: 7px;
+}
+.email-imgs-preview .icon-readed{
+    width: 20px;
+    cursor: pointer;
+}
+.email-imgs-preview .icon-trash{
+    width: 20px;
+    margin-left: 5px;
+    cursor: pointer;
 }
