@@ -4,8 +4,10 @@ import noteService from "../services/notes-service.js"
 export default {
 
     template: `
-    <section class="note note-video"  :style="getStyle"> 
+    <div class="note note-txt grid-stack-item-content" :style="getStyle">
         <h3>NOTE VIDEO</h3>
+        <img src="../../img/pin2.png" class="pin" v-if="this.note.isPinned"/>
+
         
         <iframe width="320" height="240" ref="vid"></iframe>
             {{note.txt}}
@@ -14,7 +16,7 @@ export default {
         <button @click="deleteNote()" class="del-btn">🗑️</button>
         <button @click="pinNote()" class="pin-btn">📌</button>
 
-    </section>
+    </div>
     `,
     props: ['note', 'idx'],
     data() {
@@ -26,11 +28,11 @@ export default {
         this.$refs.bcgColorPicker.value = this.note.bcg
         let url = this.note.video;
             if (url.includes('youtube')){
-                console.log('youtube');
+                // console.log('youtube');
                 // https://www.youtube.com/watch?v=wNLbP45aTO8
                 //"https://www.youtube.com/embed/tgbNymZ7vqY"
                 let fixed = url.substring(0,24) + 'embed/' +url.substring(24);
-                console.log(fixed);
+                // console.log(fixed);
                 this.$refs.vid.src = fixed
             }else  this.$refs.vid.src = url
 
@@ -43,7 +45,7 @@ export default {
     },
     computed: {
         getStyle(){
-            return `background-color:${this.note.bcg}`
+            return `background-image: linear-gradient(${this.note.bcg}, rgba(173, 216, 230, 0.6));`
         },
         // getId(){
         //     console.log('id:',this.note.id);
@@ -64,19 +66,7 @@ export default {
         deleteNote(){
             this.$emit('del', this.note.id)
         },
-        getVideo() {
-            let url = this.note.video;
-            if (url.includes('youtube')){
-                console.log('youtube');
-                // https://www.youtube.com/watch?v=wNLbP45aTO8
-                //"https://www.youtube.com/embed/tgbNymZ7vqY"
-                let fixed = url.substring(0,24) + 'embed/' +url.substring(24);
-                console.log(fixed);
-                return fixed
-            }else return url
 
-            // return this.note.video;
-        },
 
 
     },

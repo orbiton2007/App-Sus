@@ -5,8 +5,10 @@ import noteService from "../services/notes-service.js"
 export default {
 
     template: `
-    <section class="note note-todo" :style="getStyle"> 
+    <div class="note note-txt grid-stack-item-content" :style="getStyle">
         <h3>NOTE TO-DO</h3>
+        <img src="../../img/pin2.png" class="pin" v-if="this.note.isPinned"/>
+
         <p>
             {{note.txt}}
         </p>
@@ -26,7 +28,7 @@ export default {
         <button @click="deleteNote()" class="del-btn">🗑️</button>
         <button @click="pinNote()" class="pin-btn">📌</button>
 
-    </section>
+    </div>
     `,
     props: ['note'],
     data() {
@@ -41,7 +43,7 @@ export default {
     },
     computed: {
         getStyle(){
-            return `background-color:${this.note.bcg}`
+            return `background-image: linear-gradient(${this.note.bcg}, rgba(173, 216, 230, 0.6));`
         }
 
     },
