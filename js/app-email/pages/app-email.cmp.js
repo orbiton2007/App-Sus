@@ -13,14 +13,16 @@ export default {
             <div class="menu-div-container">
                 <email-menu :emails="emails" @all-emails="showAllEmails" @emails-starred="showEmailsStarred" @show-modal="showModal"></email-menu>
             </div>
+<div class="filter-list">
 
-            <div class="filter-div-container">
-                <email-filter @set-filter="setFilter"></email-filter>
-            </div>
+    <div class="filter-div-container">
+        <email-filter @set-filter="setFilter"></email-filter>
+    </div>
 
-            <div class="list-div-container">
-                <email-list :emails="emailsToShow"></email-list>
-            </div>
+    <div class="list-div-container">
+        <email-list :emails="emailsToShow"></email-list>
+    </div>
+</div>
 
             <email-compose v-if="modal" @close-modal="closeModal"></email-compose>
 

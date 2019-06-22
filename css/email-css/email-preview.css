@@ -25,11 +25,11 @@
 }
 .readed{
     color: white;
-    background-color: rgba(88, 88, 88, 0.897);
+    background-color: rgba(88, 88, 88, 0.877);
 }
 .unread{
     color: white;
-    background-color: rgba(0, 0, 0, 0.884);
+    background-color: rgba(0, 0, 0, 0.860);
 }
 .icon-star{
     width: 20px;

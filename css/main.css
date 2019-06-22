@@ -1,6 +1,10 @@
 @import './note-css/note-main.css';
 @import './email-css/email-main.css';
 
+html{
+    /* height: 100%;
+    margin: 0; */
+}
 body{
     margin: 0;
     padding: 0;
