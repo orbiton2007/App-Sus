@@ -26,6 +26,12 @@
 .preview-details .name{
     font-size: 1.2rem;
     font-weight: 600;
+    width: 130px;
+    overflow: hidden;
+}
+.preview-details .subject{
+    width: 150px;
+    overflow: hidden;
 }
 .readed{
     background-color: rgba(88, 88, 88, 0.877);

@@ -10,7 +10,7 @@ export default {
                         <span><img class="icon-star" @click="markFavorite(email)" :src="favorite"></span>
                         <div @click="getDetails(email)" class="preview-details flex space-between">
                             <span class="name">{{email.name}}</span>
-                            <span>{{email.subject}}</span>
+                            <span class="subject">{{email.subject}}</span>
                             <span class="date">{{email.sentAt}}</span>
                         </div>
                     </div>
