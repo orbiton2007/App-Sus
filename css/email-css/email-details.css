@@ -50,3 +50,24 @@
     background-color: royalblue;
 }
 
+
+
+
+@media (max-width: 800px) {
+    .subject-body{
+        padding: 10px 100px 10px 0px;
+    } 
+    .subject-body h3{
+        font-size: 1.6rem;
+    }
+    .subject-body p{
+        font-size: 1rem;
+        line-height: 25px;
+    }
+}
+
+@media (max-width: 540px) {
+    .subject-body{
+        padding: 10px 50px 10px 0px;
+    } 
+}

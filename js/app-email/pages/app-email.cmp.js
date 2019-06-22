@@ -10,21 +10,27 @@ export default {
     <section v-if="emails" class="app-emails-container">
         <section class="filter-list-status-container">
 
+            <button class="btn-menu-modal" @click="openMenu"><img class="icon-menu" src="css/email-css/images/menu.png"></button>
+            <div v-if="modalMenu" class="moal-menu-div-container">
+                <email-menu :emails="emails" @all-emails="showAllEmails" @emails-starred="showEmailsStarred" @show-modal="showModal" @emails-sent="showSent"></email-menu>
+            </div>
+            
             <div class="menu-div-container">
                 <email-menu :emails="emails" @all-emails="showAllEmails" @emails-starred="showEmailsStarred" @show-modal="showModal" @emails-sent="showSent"></email-menu>
             </div>
-<div class="filter-list">
+            
+            <div class="filter-list">
+                
+                <div class="filter-div-container">
+                    <email-filter @set-filter="setFilter"></email-filter>
+                </div>
 
-    <div class="filter-div-container">
-        <email-filter @set-filter="setFilter"></email-filter>
-    </div>
+                <div class="list-div-container">
+                    <email-list :emails="emailsToShow"></email-list>
+                </div>
+            </div>
 
-    <div class="list-div-container">
-        <email-list :emails="emailsToShow"></email-list>
-    </div>
-</div>
-
-            <email-compose v-if="modal" @close-modal="closeModal"></email-compose>
+            <email-compose v-if="modalCompose" @close-modal="closeModal"></email-compose>
 
         </section>
     </section>
@@ -33,7 +39,8 @@ export default {
         return {
             emails: null,
             filter: null,
-            modal: false
+            modalCompose: false,
+            modalMenu: false
         }
     },
     created() {
@@ -79,14 +86,17 @@ export default {
             this.filter = emailsStarred;
         },
         showModal() {
-            this.modal = true;
+            this.modalCompose = true;
         },
         closeModal(){
-            this.modal = false;
+            this.modalCompose = false;
         },
         showSent(){
            let emailsSent = emailService.getEmailsSent()
            this.filter = emailsSent;
+        },
+        openMenu(){
+            this.modalMenu = !this.modalMenu;
         }
     },
     components: {

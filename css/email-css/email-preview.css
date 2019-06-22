@@ -21,7 +21,7 @@
 }
 .preview-details{
     cursor: pointer;
-    width: 75%;
+    width: 80%;
 }
 .readed{
     background-color: rgba(88, 88, 88, 0.877);
@@ -48,5 +48,24 @@
     .list-emails li{
         font-size: 1rem;
         margin-bottom: 4px;
+    }
+}
+@media (max-width: 800px) {
+    .div-star-details{
+        width: 100%;
+    }
+}
+@media (max-width: 650px) {
+    .div-star-details{
+        font-size: 0.95rem;
+    }
+}
+@media (max-width: 600px) {
+    .preview-details{
+        flex-direction: column;
+        /* width: 70%; */
+    }
+    .div-star-details{
+        width: 70%;
     }
 }

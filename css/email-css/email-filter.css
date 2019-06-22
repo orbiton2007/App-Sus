@@ -26,3 +26,39 @@
     border: 0.5px white solid;
 }
 
+
+
+
+@media (max-width: 900px) {
+    .email-filter-container .filter-btns{
+        margin-left: 50px
+    }
+}
+@media (max-width: 600px) {
+    .email-filter-container{
+        padding: 15px;
+    }
+    .email-filter-container button{
+        padding: 6px;
+        font-size: 0.9rem;
+    }
+    .email-filter-container .filter-input{
+        margin-left: 6px;
+    }
+    .email-filter-container .filter-input input{
+        padding: 4px;
+    }
+    
+}
+@media (max-width: 440px) {
+    .email-filter-container{
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .email-filter-container .filter-btns{
+        margin-bottom: 10px
+    }
+    .email-filter-container .filter-input{
+        margin-left: 50px;
+    }
+}

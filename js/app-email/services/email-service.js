@@ -44,6 +44,11 @@ function generateEmails() {
         { id: utilService.makeId(), name: 'Tal', email: 'tal@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime(), isSent: false },
         { id: utilService.makeId(), name: 'Tal', email: 'tal@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime(), isSent: false },
         { id: utilService.makeId(), name: 'Tal', email: 'tal@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime(), isSent: false },
+        { id: utilService.makeId(), name: 'Tal', email: 'tal@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime(), isSent: false },
+        { id: utilService.makeId(), name: 'Tal', email: 'tal@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime(), isSent: false },
+        { id: utilService.makeId(), name: 'Tal', email: 'tal@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime(), isSent: false },
+        { id: utilService.makeId(), name: 'Tal', email: 'tal@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime(), isSent: false },
+        { id: utilService.makeId(), name: 'Tal', email: 'tal@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime(), isSent: false },
     ]
 }
 
