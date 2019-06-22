@@ -2,7 +2,7 @@ import emailService from '../services/email-service.js'
 
 export default {
     template: `
-    <section class=status-container> 
+    <section class=menu-container> 
         <div class="compose-link" @click="goCompose">
             <h2 >+Compose</h2>
         </div>
@@ -11,6 +11,9 @@ export default {
         </div>
         <div @click="showFavorites" class="div-starred">
             <h3 class="starred" > Starred <img class="icon-star" src="css/email-css/images/favourites.png"></h3>
+        </div>
+        <div @click="showSent" class="div-sent">
+            <h3 class="sent" > Sent <img class="icon-send" src="css/email-css/images/send.png"></h3>
         </div>
     </section>
 `,
@@ -27,14 +30,17 @@ export default {
         },
     },
     methods: {
+        goCompose(){
+            this.$emit('show-modal')
+        },
         goInbox(){
             this.$emit('all-emails');
         },
         showFavorites(){
             this.$emit('emails-starred')
         },
-        goCompose(){
-            this.$emit('show-modal')
+        showSent(){
+            this.$emit('emails-sent')
         }
     },
 };

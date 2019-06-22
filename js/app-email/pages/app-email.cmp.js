@@ -11,7 +11,7 @@ export default {
         <section class="filter-list-status-container">
 
             <div class="menu-div-container">
-                <email-menu :emails="emails" @all-emails="showAllEmails" @emails-starred="showEmailsStarred" @show-modal="showModal"></email-menu>
+                <email-menu :emails="emails" @all-emails="showAllEmails" @emails-starred="showEmailsStarred" @show-modal="showModal" @emails-sent="showSent"></email-menu>
             </div>
 <div class="filter-list">
 
@@ -83,6 +83,10 @@ export default {
         },
         closeModal(){
             this.modal = false;
+        },
+        showSent(){
+           let emailsSent = emailService.getEmailsSent()
+           this.filter = emailsSent;
         }
     },
     components: {
