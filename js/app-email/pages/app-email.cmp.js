@@ -80,13 +80,16 @@ export default {
         },
         showAllEmails() {
             this.filter = this.emails;
+            this.modalMenu = false;
         },
         showEmailsStarred() {
             let emailsStarred = emailService.getEmailsStarred()
             this.filter = emailsStarred;
+            this.modalMenu = false;
         },
         showModal() {
             this.modalCompose = true;
+            this.modalMenu = false;
         },
         closeModal(){
             this.modalCompose = false;
@@ -94,6 +97,7 @@ export default {
         showSent(){
            let emailsSent = emailService.getEmailsSent()
            this.filter = emailsSent;
+           this.modalMenu = false;
         },
         openMenu(){
             this.modalMenu = !this.modalMenu;

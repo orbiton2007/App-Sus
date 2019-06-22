@@ -63,7 +63,6 @@
 @media (max-width: 600px) {
     .preview-details{
         flex-direction: column;
-        /* width: 70%; */
     }
     .div-star-details{
         width: 70%;
