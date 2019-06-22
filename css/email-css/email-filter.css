@@ -51,14 +51,11 @@
     
 }
 @media (max-width: 440px) {
-    .email-filter-container{
-        flex-direction: column;
-        justify-content: space-between;
-    }
     .email-filter-container .filter-btns{
         margin-bottom: 10px
     }
-    .email-filter-container .filter-input{
-        margin-left: 50px;
+    .email-filter-container .filter-input input{
+        width: 105px;
+        padding: 4px;
     }
 }
