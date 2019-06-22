@@ -11,6 +11,7 @@
     border-radius: 3px;
     padding: 10px;
     cursor: pointer;
+    font-size: 0.9rem;
 }
 .email-filter-container button:hover{
     background-color: royalblue;

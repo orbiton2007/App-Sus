@@ -24,11 +24,9 @@
     width: 75%;
 }
 .readed{
-    color: white;
     background-color: rgba(88, 88, 88, 0.877);
 }
 .unread{
-    color: white;
     background-color: rgba(0, 0, 0, 0.860);
 }
 .icon-star{
@@ -44,4 +42,11 @@
     width: 20px;
     margin-left: 5px;
     cursor: pointer;
+}
+
+@media (max-width: 1100px) {
+    .list-emails li{
+        font-size: 1rem;
+        margin-bottom: 4px;
+    }
 }

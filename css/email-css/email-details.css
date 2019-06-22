@@ -26,12 +26,16 @@
 }
 .subject-body{
     margin-left: 25px;
-    padding: 10px 0;
+    padding: 10px 150px 10px 0px;
 } 
 .subject-body h3{
     font-size: 2rem;
     font-weight: 500;
     text-decoration: underline;
+}
+.subject-body p{
+    font-size: 1.2rem;
+    line-height: 30px;
 }
 .email-details-container .btn-close{
     background-color: rgba(0, 0, 0, 0.884);
