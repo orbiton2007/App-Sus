@@ -39,5 +39,6 @@
 }
 .list-div-container{
     overflow: scroll;
+    overflow-x: hidden;
     height: 87vh;
 }
