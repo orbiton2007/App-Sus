@@ -4,7 +4,7 @@ import noteService from "../services/notes-service.js"
 export default {
 
     template: `
-    <div class="note note-txt grid-stack-item-content" :style="getStyle"> 
+    <div class="note note-img grid-stack-item-content" :style="getStyle"> 
         <h3>NOTE IMAGE</h3>
         
         <img src="../../img/pin2.png" class="pin" v-if="this.note.isPinned"/>

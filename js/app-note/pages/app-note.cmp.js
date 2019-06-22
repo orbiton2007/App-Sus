@@ -13,6 +13,7 @@ export default {
     <section class="appNote">
 
         <input type="text" ref="search" placeholder="search here"  @input.nativ="search()"/>
+
         <button @click="addTxtNote()">+add TXT note</button>
         <button @click="addTodoNote()">+add TODO note</button>
 
@@ -27,16 +28,17 @@ export default {
         
         <div class="pinned-cont">
 
-            <div v-for="(note,idx) in notesPinned" >
-            <component :is="note.type" :note="note" @pinEv="pinned" @del="deleteNote" class="pinned-note"/>
-            </div>
+            <section v-for="(note,idx) in notesPinned" class="pinned-note">
+                <component :is="note.type" :note="note" @pinEv="pinned" @del="deleteNote" />
+            </section>
+
         </div>
 
             <!-- <span v-if="pinLine">  ***************************</span> -->
 
         <div class="grid-stack" data-gs-animate="yes">
-
-            <div v-for="(note,idx) in notesUnpinned" class="grid-stack-item" :id="idx"
+        <!-- :id="idx" -->
+            <div v-for="(note,idx) in notesUnpinned" class="grid-stack-item ui-draggable ui-resizable ui-resizable-autohide"
             data-gs-x="0" data-gs-y="0"
             data-gs-width="4" data-gs-height="4">
                 <component :is="note.type" :note="note" @x="getX" @pinEv="pinned" @del="deleteNote"/>
@@ -63,7 +65,7 @@ export default {
                 this.notesPinned = this.notesAll.filter(note => note.isPinned);
                 this.notesUnpinned = this.notesAll.filter(note => !note.isPinned);
                 console.log(this.notesAll);
-            })
+            });
 
     },
     mounted() {
@@ -105,7 +107,6 @@ export default {
         },
         addTxtNote() {
             noteService.addTxtNote();
-
             noteService.getNotes()
                 .then((notes) => {
                     //improve: is there an option to get and save only 1 params instead of all array?
@@ -118,8 +119,8 @@ export default {
             noteService.getNotes()
                 .then((notes) => {
                     //improve: is there an option to get and save only 1 params instead of all array?
-                    this.notesUnpinned = notes
                     this.notesAll = notes;
+                    this.notesUnpinned = notes.filter(note => !note.isPinned);
                 })
         },
         showImgInput() {
@@ -134,8 +135,8 @@ export default {
             noteService.getNotes()
                 .then((notes) => {
                     //improve: is there an option to get and save only 1 params instead of all array?
-                    this.notesUnpinned = notes
                     this.notesAll = notes;
+                    this.notesUnpinned = notes.filter(note => !note.isPinned);
                 })
 
             this.imgInput = false
@@ -146,27 +147,43 @@ export default {
             noteService.getNotes()
                 .then((notes) => {
                     //improve: is there an option to get and save only 1 params instead of all array?
-                    this.notesUnpinned = notes
                     this.notesAll = notes;
+                    this.notesUnpinned = notes.filter(note => !note.isPinned);
                 })
 
-            this.videoInput = false
+            this.videoInput = false;
         },
         search() {
             console.log('search:', this.$refs.search.value);
-            let searchStr = this.$refs.search.value
+            let searchStr = this.$refs.search.value;
 
-            this.notesUnpinned = this.notesAll.filter(note => {
-                if (note.type != 'note-todo')
-                    return note.txt.includes(searchStr)
-                else return note.todos.some((todo) => todo.txt == searchStr)
-            });
+            if (!searchStr) {
+                console.log('empty search');
 
-            this.notesPinned = this.notesAll.filter(note => {
-                if (note.type != 'note-todo')
-                    return note.txt.includes(searchStr)
-                else return note.todos.some((todo) => todo.txt == searchStr)
-            });
+                this.notesUnpinned = this.notesAll.filter(note => !note.isPinned);
+                this.notesPinned = this.notesAll.filter(note => note.isPinned);
+                console.log(this.notesUnpinned);
+                console.log(this.notesPinned);
+
+            } else {
+                this.notesUnpinned = this.notesAll.filter(note => {
+                    if (!note.isPinned) {
+                        if (note.type != 'note-todo') {
+                            return note.txt.includes(searchStr);
+                        } else return note.todos.some((todo) => todo.txt.includes(searchStr))
+                    }
+                });
+                console.log(this.notesUnpinned);
+
+                this.notesPinned = this.notesAll.filter(note => {
+                    if (note.isPinned) {
+                        if (note.type != 'note-todo') {
+                            return note.txt.includes(searchStr);
+                        } else return note.todos.some((todo) => todo.txt.includes(searchStr))
+                    }
+                });
+                console.log(this.notesPinned);
+            }
         },
         getX(x) {
             // console.log('getx',x);

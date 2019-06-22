@@ -9,8 +9,8 @@ export default {
         <h3>NOTE TXT</h3>
         <!-- <textarea ref="area" v-model="editable" cols="30" rows="8" @input.nativ="save()" name="getName"></textarea> -->
         <img src="../../img/pin2.png" class="pin" v-if="this.note.isPinned"/>
-        
-        <p contenteditable="true" onclick='$(this).focus();' @input.nativ="saveTxt()" ref="content">
+        <!-- onclick='$(this).focus();' -->
+        <p contenteditable="true" @input.nativ="saveTxt()" ref="content">
             {{note.txt}}
         </p>
 
