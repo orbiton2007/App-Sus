@@ -23,6 +23,10 @@
     cursor: pointer;
     width: 80%;
 }
+.preview-details .name{
+    font-size: 1.2rem;
+    font-weight: 600;
+}
 .readed{
     background-color: rgba(88, 88, 88, 0.877);
 }
@@ -63,6 +67,10 @@
 @media (max-width: 600px) {
     .preview-details{
         flex-direction: column;
+    }
+    .preview-details .name{
+        font-size: 1.2rem;
+        font-weight: 600;
     }
     .div-star-details{
         width: 70%;
