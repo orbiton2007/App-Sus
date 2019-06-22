@@ -6,9 +6,9 @@ export default {
             <form class="form" @submit.prevent="sendEmail">
                 <button class="btn-close" @click="closeModal">X</button>
                 <h3>New Message</h3>
-                <p><input type="text" placeholder="Enter Name" v-model="newEmail.name" maxlength="30" autofocus required></p>
-                <p><input type="email" placeholder="Email Address" v-model="newEmail.address" maxlength="30" required></p>
-                <p><input type="text" placeholder="Subject" v-model="newEmail.subject" maxlength="50" required></p>
+                <p><input type="text" placeholder="Enter Name" v-model="newEmail.name" maxlength="20" autofocus required></p>
+                <p><input type="email" placeholder="Email Address" v-model="newEmail.address" maxlength="25" required></p>
+                <p><input type="text" placeholder="Subject" v-model="newEmail.subject" maxlength="25" required></p>
                 <p><textarea cols="60" rows="17" v-model="newEmail.body"></textarea></p>
                 <button>Send</button>
             </form>
