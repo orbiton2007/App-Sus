@@ -1,0 +1,28 @@
+
+.email-filter-container{
+    background-color: rgba(0, 0, 0, 0.884);
+    border: 0.5px white solid;
+    padding: 20px;
+}
+.email-filter-container button{
+    background-color: rgba(0, 0, 0, 0.884);
+    border: 0.5px white solid;
+    color: white;
+    border-radius: 3px;
+    padding: 10px;
+    cursor: pointer;
+}
+.email-filter-container button:hover{
+    background-color: royalblue;
+}
+.email-filter-container .filter-input{
+    margin-left: 10px;
+}
+.email-filter-container .filter-input input{
+    color: black;
+    padding: 7px;
+    border-radius: 3px;
+    border: 0.5px white solid;
+}
+.email-filter-container .filter-btns{
+}

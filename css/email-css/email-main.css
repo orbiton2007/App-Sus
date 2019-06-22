@@ -1,3 +1,45 @@
 
 @import './email-preview.css';
+@import './email-list.css';
+@import './email-filter.css';
+@import './email-menu.css';
+@import './email-details.css';
+@import './email-compose.css';
 
+
+
+button{
+    cursor: pointer;
+}
+li{
+    list-style: none;
+}
+.app-emails-container{
+    background-image: url('./images/calligraphy-close-up-commerce-1809346.jpg');
+    background-size: cover;
+    height: 100%;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.filter-list-status-container{
+    display: grid;
+    grid-gap: 10px;
+    grid-template-rows: 1fr 8fr;
+    grid-template-columns: 1fr 5fr;
+    padding-top: 10px;
+    width: 98%;
+    height: 100%;
+    margin: 0 auto;
+}
+.menu-div-container{
+    grid-row: 1/3;
+    grid-column: 1/2;
+}
+.filter-div-container{
+    grid-row: 1/2;
+    grid-column: 2/3;
+}
+.list-div-container{
+    grid-row: 2/3;
+    grid-column: 2/3;
+}
