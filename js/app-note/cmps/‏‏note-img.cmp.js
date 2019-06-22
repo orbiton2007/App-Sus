@@ -8,14 +8,16 @@ export default {
         <h3>NOTE IMAGE</h3>
         
         <img :src="getImg" />
-            <!-- {{note.txt}} -->
+            {{note.txt}}
         
         <!-- <input type="file" name="image"  @change.nativ="upload($event, noteIdx)"/>
         
         <canvas id="myCanvas" width="300" height="300"></canvas> -->
     <!-- <button @click="changeBcg()"></button> -->
     <input type="color" ref="bcgColorPicker" @change.nativ="changeBcg()"/>
-    <button @click="deleteNote()" class="del-btn">X</button>
+    <button @click="deleteNote()" class="del-btn">🗑️</button>
+    <button @click="pinNote()" class="pin-btn">📌</button>
+
     </section>
     `,
     props: ['note'],
@@ -23,6 +25,9 @@ export default {
         return {
 
         }
+    },
+    mounted() {
+        this.$refs.bcgColorPicker.value = this.note.bcg
     },
     created() {
 
@@ -49,8 +54,12 @@ export default {
             let color = this.$refs.bcgColorPicker.value;
             noteService.changeNoteBcg(this.note.id,color)
         },
+        pinNote(){
+            console.log('emit');  
+            this.$emit('pinEv', this.note.id)
+        },
         deleteNote(){
-            noteService.del(this.note.id);
+            this.$emit('del', this.note.id)
         },
 
 

@@ -12,79 +12,115 @@ export default {
     <section>
 
         <h1>App Note</h1>
+        <input type="text" ref="search" placeholder="search here"  @input.nativ="search()"/>
         <button @click="addTxtNote()">+add TXT note</button>
         <button @click="addTodoNote()">+add TODO note</button>
         <button @click="addImgNote()">+add IMG note</button>
 
-        <section v-for="(note,idx) in notesPinned" :key="render">
-            <component :is="note.type" :note="note" @pinEv="pinned"/>
+        <section v-for="(note,idx) in notesPinned">
+            <component :is="note.type" :note="note" @pinEv="pinned" @del="deleteNote"/>
         </section>
-        ----------------------------------------------------
-        <section v-for="(note,idx) in notes" :key="render">
-            <component :is="note.type" :note="note" @pinEv="pinned"/>
+        <span v-if="pinLine"> ----------------------------------------------------</span>
+        <section v-for="(note,idx) in notesUnpinned">
+            <component :is="note.type" :note="note" @pinEv="pinned" @del="deleteNote"/>
         </section>
     </section>
     `,
     props: [],
     data() {
         return {
-            notes: null,
+            notesAll: null,
             notesPinned: null,
-            counter: 1,
-            render
+            notesUnpinned: null,
         }
     },
     created() {
-        // get notes from localStorage
-        noteService.getNotes()
+        this.notesAll = noteService.getNotes()
             .then((notes) => {
-                console.log('notes from storage:', notes);
-                this.notes = notes.filter((note)=>!note.isPinned);
-                this.notesPinned = notes.filter((note)=>note.isPinned);
+                this.notesAll = notes;
+                this.notesPinned = this.notesAll.filter(note => note.isPinned);
+                this.notesUnpinned = this.notesAll.filter(note => !note.isPinned);
+                console.log(this.notesAll);
             })
-
-    },
-    destroyed() {
-
     },
     computed: {
+        pinLine() {
+            if (!this.notesPinned || !this.notesPinned.length) return false;
+            else return true;
+        }
 
     },
     methods: {
-        pinned(id){
-            console.log('pin event',id);
+        pinned(id) {
+            console.log('pin event', id);
             noteService.togglePin(id);
-             
-        },
-        addTxtNote(){
-            // console.log('txt');
-            this.counter++;
-            // fix the bug! ps. its ok after refresh
+
             noteService.getNotes()
                 .then((notes) => {
-                    notes.unshift({ id: utilService.makeId() ,txt: 'this is my note!' + this.counter, type: 'note-txt', bcg: 'red' ,isPinned:false});
-                    //improve: is there an option to get and save only 1 params instead of all array?
-                    storageService.store('notes', notes)
-            })
-            
+                    this.notesAll = notes;
+                    this.notesPinned = notes.filter(note => note.isPinned);
+                    this.notesUnpinned = notes.filter(note => !note.isPinned);
+                    console.log('pinned:', this.notesPinned, 'unpinned:', this.notesUnpinned);
+                })
         },
-        addTodoNote(){
-            noteService.getNotes()
-            .then((notes) => {
-                notes.unshift({ id: utilService.makeId() ,txt: 'Hi! Im new list!', todos: [{ txt: 'todo number 1', isDone: false }, { txt: 'todo number 2', isDone: false }], type: 'note-todo', bcg: null ,isPinned:false});
-                //improve: is there an option to get and save only 1 params instead of all array?
-                storageService.store('notes', notes)
-        })
+        deleteNote(id) {
+            console.log('delete event', id);
+            noteService.del(id);
 
-        },
-        addImgNote(){
             noteService.getNotes()
-            .then((notes) => {
-                notes.unshift({id: utilService.makeId() ,txt: 'Hi! Im new image note! :)', img: "./../../../img/milk.jpg", type: 'note-img', bcg: null ,isPinned:false});
-                //improve: is there an option to get and save only 1 params instead of all array?
-                storageService.store('notes', notes)
-        })
+                .then((notes) => {
+                    this.notesAll = notes;
+                    this.notesPinned = notes.filter(note => note.isPinned);
+                    this.notesUnpinned = notes.filter(note => !note.isPinned);
+                    console.log('pinned:', this.notesPinned, 'unpinned:', this.notesUnpinned);
+                })
         },
+        addTxtNote() {
+            noteService.addTxtNote();
+
+            noteService.getNotes()
+                .then((notes) => {
+                    //improve: is there an option to get and save only 1 params instead of all array?
+                    this.notesAll = notes;
+                    this.notesUnpinned = notes.filter(note => !note.isPinned);
+                })
+        },
+        addTodoNote() {
+            noteService.addTodoNote();
+            noteService.getNotes()
+                .then((notes) => {
+                    //improve: is there an option to get and save only 1 params instead of all array?
+                    this.notesUnpinned = notes
+                    this.notesAll = notes;
+                })
+        },
+        addImgNote() {
+            noteService.addImgNote();
+
+            noteService.getNotes()
+                .then((notes) => {
+                    //improve: is there an option to get and save only 1 params instead of all array?
+                    this.notesUnpinned = notes
+                    this.notesAll = notes;
+                })
+        },
+        search() {
+            console.log('search:', this.$refs.search.value);
+            let searchStr = this.$refs.search.value
+
+            this.notesUnpinned = this.notesAll.filter(note => {
+                if (note.type != 'note-todo')
+                    return note.txt.includes(searchStr)
+                else return note.todos.some((todo) => todo.txt == searchStr)
+            });
+
+            this.notesPinned = this.notesAll.filter(note => {
+                if (note.type != 'note-todo')
+                    return note.txt.includes(searchStr)
+                else return note.todos.some((todo) => todo.txt == searchStr)
+            });
+        },
+
     },
     components: {
         noteTxt,
