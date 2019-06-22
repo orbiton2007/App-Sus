@@ -39,6 +39,9 @@ function generateEmails() {
         { id: utilService.makeId(), name: 'Michael', email: 'michael@blala.com',subject: 'Hello my friend', body: 'ffffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime() },
         { id: utilService.makeId(), name: 'Yaron', email: 'yaron@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime() },
         { id: utilService.makeId(), name: 'Tal', email: 'tal@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime() },
+        { id: utilService.makeId(), name: 'Tal', email: 'tal@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime() },
+        { id: utilService.makeId(), name: 'Tal', email: 'tal@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime() },
+        { id: utilService.makeId(), name: 'Tal', email: 'tal@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime() },
     ]
 }
 

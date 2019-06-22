@@ -4,7 +4,17 @@
 body{
     margin: 0;
     padding: 0;
-    height: 100vh;
+    height: 100%;
+}
+.header-container{
+    height: 30px;
+    background-color: black;
+}
+.header-container a{
+    margin-left: 10px;
+    color: white;
+    font-size: 1.4rem;
+    text-decoration: none;
 }
 main{
     height: 100%;
