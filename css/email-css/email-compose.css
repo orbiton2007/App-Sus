@@ -13,7 +13,7 @@
  }
  .sec-compose .btn-close{
      float: right;
-     padding: 5px;
+     padding: 5px 8px;
  }
  .sec-compose h3{
     margin-top: 5px;
@@ -35,4 +35,7 @@
     border-radius: 3px;
     padding: 10px;
     cursor: pointer;
+ }
+.sec-compose button:hover{
+    background-color: royalblue;
  }

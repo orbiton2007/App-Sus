@@ -8,7 +8,8 @@ export default {
     removeEmail,
     saveToStorage,
     getEmailsStarred,
-    createEmail
+    createEmail,
+    getEmailsSent
 }
 
 const EMAILS_KEY = 'emails';
@@ -33,15 +34,16 @@ function query() {
 
 function generateEmails() {
     return [
-        { id: utilService.makeId(), name: 'Ran', email: 'ran@blala.com', subject: 'Wassap with Vue?', body: 'fffffffff', isRead: false, isFavorite: false, sentAt: grtTime() },
-        { id: utilService.makeId(), name: 'Vico', email: 'vico@blala.com',subject: 'Hey bro', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime() },
-        { id: utilService.makeId(), name: 'Yonatan', email: 'yonatan@blala.com',subject: 'Wassap with you?', body: 'fffffffffff', isRead: false, isFavorite: false, sentAt: grtTime() },
-        { id: utilService.makeId(), name: 'Michael', email: 'michael@blala.com',subject: 'Hello my friend', body: 'ffffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime() },
-        { id: utilService.makeId(), name: 'Yaron', email: 'yaron@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime() },
-        { id: utilService.makeId(), name: 'Tal', email: 'tal@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime() },
-        { id: utilService.makeId(), name: 'Tal', email: 'tal@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime() },
-        { id: utilService.makeId(), name: 'Tal', email: 'tal@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime() },
-        { id: utilService.makeId(), name: 'Tal', email: 'tal@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime() },
+        { id: utilService.makeId(), name: 'Ran', email: 'ran@blala.com', subject: 'Wassap with Vue?', body: 'Quibusdam vero praesentium numquam enim', isRead: false, isFavorite: false, sentAt: grtTime(), isSent: false },
+        { id: utilService.makeId(), name: 'Vico', email: 'vico@blala.com',subject: 'Hey bro', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime(), isSent: false },
+        { id: utilService.makeId(), name: 'Yonatan', email: 'yonatan@blala.com',subject: 'Wassap with you?', body: 'fffffffffff', isRead: false, isFavorite: false, sentAt: grtTime(), isSent: false },
+        { id: utilService.makeId(), name: 'Michael', email: 'michael@blala.com',subject: 'Hello my friend', body: 'ffffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime(), isSent: false },
+        { id: utilService.makeId(), name: 'Yaron', email: 'yaron@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime(), isSent: false },
+        { id: utilService.makeId(), name: 'Tal', email: 'tal@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime(), isSent: false },
+        { id: utilService.makeId(), name: 'Tal', email: 'tal@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime(), isSent: false },
+        { id: utilService.makeId(), name: 'Tal', email: 'tal@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime(), isSent: false },
+        { id: utilService.makeId(), name: 'Tal', email: 'tal@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime(), isSent: false },
+        { id: utilService.makeId(), name: 'Tal', email: 'tal@blala.com',subject: 'Hello my friend', body: 'ffffffffffff', isRead: false, isFavorite: false, sentAt: grtTime(), isSent: false },
     ]
 }
 
@@ -55,7 +57,8 @@ function createEmail(email){
        body: email.body, 
        isRead: false, 
        isFavorite: false, 
-       sentAt: grtTime() 
+       sentAt: grtTime(),
+       isSent: true 
     }
     emailsDB.unshift(newEmail);
     storageService.store(EMAILS_KEY, emailsDB);
@@ -86,6 +89,13 @@ function removeEmail(emailId) {
 function getEmailsStarred(){
     let emails = emailsDB.filter(email=>{
         if(email.isFavorite) return email;
+    })
+    return emails;
+}
+
+function getEmailsSent(){
+    let emails = emailsDB.filter(email => {
+        if(email.isSent === true) return email;
     })
     return emails;
 }
