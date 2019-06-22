@@ -39,21 +39,19 @@
         padding: 15px;
     }
     .email-filter-container button{
-        padding: 6px;
+        padding: 8px;
         font-size: 0.9rem;
+        font-weight: 500;
     }
     .email-filter-container .filter-input{
         margin-left: 6px;
     }
     .email-filter-container .filter-input input{
-        padding: 4px;
+        padding: 6px;
     }
     
 }
 @media (max-width: 440px) {
-    .email-filter-container .filter-btns{
-        margin-bottom: 10px
-    }
     .email-filter-container .filter-input input{
         width: 105px;
         padding: 4px;
