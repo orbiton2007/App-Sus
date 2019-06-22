@@ -6,16 +6,25 @@ import utilService from "./../../global/services/util.service.js"
 import noteTxt from "../cmps/note-txt.cmp.js"
 import noteTodo from "../cmps/‏‏note-todo.cmp.js"
 import noteImg from "../cmps/‏‏note-img.cmp.js"
+import noteVideo from "../cmps/‏‏‏‏note-video.cmp.js"
 
 export default {
     template: `
     <section>
 
         <h1>App Note</h1>
+
         <input type="text" ref="search" placeholder="search here"  @input.nativ="search()"/>
         <button @click="addTxtNote()">+add TXT note</button>
         <button @click="addTodoNote()">+add TODO note</button>
-        <button @click="addImgNote()">+add IMG note</button>
+
+        <button @click="showVideoInput()">+add VIDEO note</button>
+        <input type="text" ref="videoInput" placeholder="Enter video URL" v-if="videoInput"/>
+        <button v-if="videoInput" @click="addVideoNote()">upload</button>
+
+        <button @click="showImgInput()">+add IMG note</button>
+        <input type="text" ref="imgInput" placeholder="Enter img URL" v-if="imgInput"/>
+        <button v-if="imgInput" @click="addImgNote()">upload</button>
 
         <section v-for="(note,idx) in notesPinned">
             <component :is="note.type" :note="note" @pinEv="pinned" @del="deleteNote"/>
@@ -32,6 +41,8 @@ export default {
             notesAll: null,
             notesPinned: null,
             notesUnpinned: null,
+            imgInput: false,
+            videoInput:false
         }
     },
     created() {
@@ -94,8 +105,14 @@ export default {
                     this.notesAll = notes;
                 })
         },
+        showImgInput(){
+            this.imgInput = true
+        },
+        showVideoInput(){
+            this.videoInput = true
+        },
         addImgNote() {
-            noteService.addImgNote();
+            noteService.addImgNote(this.$refs.imgInput.value);
 
             noteService.getNotes()
                 .then((notes) => {
@@ -103,6 +120,20 @@ export default {
                     this.notesUnpinned = notes
                     this.notesAll = notes;
                 })
+
+            this.imgInput=false
+        },
+        addVideoNote() {
+            noteService.addVideoNote(this.$refs.videoInput.value);
+
+            noteService.getNotes()
+                .then((notes) => {
+                    //improve: is there an option to get and save only 1 params instead of all array?
+                    this.notesUnpinned = notes
+                    this.notesAll = notes;
+                })
+
+            this.videoInput=false
         },
         search() {
             console.log('search:', this.$refs.search.value);
@@ -125,6 +156,7 @@ export default {
     components: {
         noteTxt,
         noteTodo,
-        noteImg
+        noteImg,
+        noteVideo
     }
 }

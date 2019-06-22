@@ -11,6 +11,7 @@ export default {
     addTxtNote,
     addTodoNote,
     addImgNote,
+    addVideoNote
 }
 
 
@@ -102,10 +103,19 @@ function addTodoNote(){
         })
 }
 
-function addImgNote(){
+function addImgNote(url){
     getNotes()
         .then((notes) => {
-            notes.unshift({ id: utilService.makeId(), txt: 'Hi! Im new image note! :)', img: "./../../../img/milk.jpg", type: 'note-img', bcg: utilService.getRandomColor(), isPinned: false });
+            notes.unshift({ id: utilService.makeId(), txt: 'Hi! Im new image note! :)', img: url, type: 'note-img', bcg: utilService.getRandomColor(), isPinned: false });
+            //improve: is there an option to get and save only 1 params instead of all array?
+            storageService.store('notes', notes)
+        })
+}
+
+function addVideoNote(url){
+    getNotes()
+        .then((notes) => {
+            notes.unshift({ id: utilService.makeId(), txt: 'Hi! Im new Video note! :)', video: url, type: 'note-video', bcg: utilService.getRandomColor(), isPinned: false });
             //improve: is there an option to get and save only 1 params instead of all array?
             storageService.store('notes', notes)
         })
