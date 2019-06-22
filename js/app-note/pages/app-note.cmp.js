@@ -10,9 +10,7 @@ import noteVideo from "../cmps/‏‏‏‏note-video.cmp.js"
 
 export default {
     template: `
-    <section>
-
-        <h1>App Note</h1>
+    <section class="appNote">
 
         <input type="text" ref="search" placeholder="search here"  @input.nativ="search()"/>
         <button @click="addTxtNote()">+add TXT note</button>
@@ -26,13 +24,26 @@ export default {
         <input type="text" ref="imgInput" placeholder="Enter img URL" v-if="imgInput"/>
         <button v-if="imgInput" @click="addImgNote()">upload</button>
 
-        <section v-for="(note,idx) in notesPinned">
-            <component :is="note.type" :note="note" @pinEv="pinned" @del="deleteNote"/>
-        </section>
-        <span v-if="pinLine"> ----------------------------------------------------</span>
-        <section v-for="(note,idx) in notesUnpinned">
-            <component :is="note.type" :note="note" @pinEv="pinned" @del="deleteNote"/>
-        </section>
+        
+        <div class="pinned-cont">
+
+            <div v-for="(note,idx) in notesPinned" >
+            <component :is="note.type" :note="note" @pinEv="pinned" @del="deleteNote" class="pinned-note"/>
+            </div>
+        </div>
+
+            <!-- <span v-if="pinLine">  ***************************</span> -->
+
+        <div class="grid-stack" data-gs-animate="yes">
+
+            <div v-for="(note,idx) in notesUnpinned" class="grid-stack-item" :id="idx"
+            data-gs-x="0" data-gs-y="0"
+            data-gs-width="4" data-gs-height="4">
+                <component :is="note.type" :note="note" @x="getX" @pinEv="pinned" @del="deleteNote"/>
+            </div>
+        
+        </div>
+
     </section>
     `,
     props: [],
@@ -42,7 +53,7 @@ export default {
             notesPinned: null,
             notesUnpinned: null,
             imgInput: false,
-            videoInput:false
+            videoInput: false
         }
     },
     created() {
@@ -53,12 +64,18 @@ export default {
                 this.notesUnpinned = this.notesAll.filter(note => !note.isPinned);
                 console.log(this.notesAll);
             })
+
+    },
+    mounted() {
+        console.log(document.getElementById('0'));
+        // document.querySelector('#0');
+        document.getElementById('0')
     },
     computed: {
         pinLine() {
             if (!this.notesPinned || !this.notesPinned.length) return false;
             else return true;
-        }
+        },
 
     },
     methods: {
@@ -105,10 +122,10 @@ export default {
                     this.notesAll = notes;
                 })
         },
-        showImgInput(){
+        showImgInput() {
             this.imgInput = true
         },
-        showVideoInput(){
+        showVideoInput() {
             this.videoInput = true
         },
         addImgNote() {
@@ -121,7 +138,7 @@ export default {
                     this.notesAll = notes;
                 })
 
-            this.imgInput=false
+            this.imgInput = false
         },
         addVideoNote() {
             noteService.addVideoNote(this.$refs.videoInput.value);
@@ -133,7 +150,7 @@ export default {
                     this.notesAll = notes;
                 })
 
-            this.videoInput=false
+            this.videoInput = false
         },
         search() {
             console.log('search:', this.$refs.search.value);
@@ -151,6 +168,12 @@ export default {
                 else return note.todos.some((todo) => todo.txt == searchStr)
             });
         },
+        getX(x) {
+            // console.log('getx',x);
+            // console.log('this note',note);
+
+
+        }
 
     },
     components: {

@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>App Sus</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="lib/gridstack.css">
+    <link rel="stylesheet" href="lib/jqueryUI/jquery-ui.css">
+    <link rel="stylesheet" href="lib/jqueryUI/jquery-ui.structure.css">
+    <link rel="stylesheet" href="lib/jqueryUI/jquery-ui.theme.css">
 </head>
 <body>
     
@@ -13,9 +17,22 @@
         
     </div>
 
-    
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
+    <script src="lib/jquery.js"></script>
+    <script src="lib/jqueryUI/jquery-ui.js"></script>
+    <script src="lib/gridstack.js"></script>
+    <script src="lib/gridstack.jQueryUI.js"></script>
+
+
     <script src="lib/vue.js"></script>
     <script src="lib/vue-router.js"></script>
     <script type="module" src="js/main.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('.grid-stack').gridstack();
+        });
+    </script>
+
 </body>
 </html>

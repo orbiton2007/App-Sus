@@ -4,17 +4,19 @@ import noteService from "../services/notes-service.js"
 export default {
 
     template: `
-    <section class="note note-img"  :style="getStyle"> 
+    <div class="note note-txt grid-stack-item-content" :style="getStyle"> 
         <h3>NOTE IMAGE</h3>
         
+        <img src="../../img/pin2.png" class="pin" v-if="this.note.isPinned"/>
         <img :src="getImg" />
-            {{note.txt}}
+            <!-- {{note.txt}} -->
+        <br>
         
         <input type="color" ref="bcgColorPicker" @change.nativ="changeBcg()"/>
         <button @click="deleteNote()" class="del-btn">🗑️</button>
         <button @click="pinNote()" class="pin-btn">📌</button>
 
-    </section>
+    </div>
     `,
     props: ['note'],
     data() {
@@ -36,7 +38,9 @@ export default {
             return this.note.img;
         },
         getStyle(){
-            return `background-color:${this.note.bcg}`
+            // console.log(this.note.bcg);
+            // background-color:${this.note.bcg}; 
+            return `background-image: linear-gradient(${this.note.bcg}, rgba(173, 216, 230, 0.6));`
         }
     },
     methods: {
@@ -47,7 +51,8 @@ export default {
         },
         pinNote(){
             console.log('emit');  
-            this.$emit('pinEv', this.note.id)
+            this.$emit('pinEv', this.note.id);
+
         },
         deleteNote(){
             this.$emit('del', this.note.id)
