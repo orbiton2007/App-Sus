@@ -99,6 +99,11 @@
     }
 }
 @media (max-width: 600px) {
+    .app-emails-container{
+        background-image: url('./images/background.jpg');
+        background-size: cover;
+        padding-top: 5px;
+    }
     .btn-menu-modal{
         display: block;
         position: absolute;
