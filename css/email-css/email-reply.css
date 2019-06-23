@@ -1,0 +1,51 @@
+.replies-container li{
+    padding: 10px;
+    width: 800px;
+    height: 50px;
+    overflow: auto;
+}
+.reply-container{
+    padding: 20px;
+    width: 400px;
+}
+.form-reply *{
+    margin-bottom: 10px;
+}
+.form-reply button{
+    background-color: rgba(0, 0, 0, 0.884);
+    border: 0.5px white solid;
+    color: white;
+    border-radius: 3px;
+    width: max-content;
+    padding: 10px;
+    cursor: pointer;
+}
+.form-reply button:hover{
+    background-color: royalblue;
+}
+
+
+
+
+@media (max-width: 1000px) {
+    .replies-container li{
+        width: 600px;
+        height: 80px;
+    }
+}
+@media (max-width: 670px) {
+    .replies-container li{
+        width: 400px;
+        height: 90px;
+    }
+}
+@media (max-width: 540px) {
+    .replies-container li{
+        width: 300px;
+        height: 60px;
+    }
+    .reply-container{
+        padding: 10px;
+        width: 300px;
+    }
+}
