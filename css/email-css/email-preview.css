@@ -37,7 +37,7 @@
     background-color: rgba(88, 88, 88, 0.830);
 }
 .unread{
-    background-color: rgba(0, 0, 0, 0.860);
+    background-color: rgba(0, 0, 0, 0.820);
 }
 .icon-star{
     width: 23px;
@@ -98,5 +98,8 @@
     .email-imgs-preview .icon-trash{
         width: 30px;
         margin-left: 5px;
+    }
+    .unread{
+        background-color: rgba(0, 0, 0, 0.700);
     }
 }
