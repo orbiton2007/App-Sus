@@ -11,51 +11,45 @@ import noteVideo from "../cmps/‏‏‏‏note-video.cmp.js"
 export default {
     template: `
     <section class="appNote">
-        <div v-if="imgInput" class="hidden-btns-cont">
+        <!-- image modal -->
+        <div v-if="imgInput" class="upload-modal">
                 <input type="text" ref="imgInput" placeholder="Enter img URL"/>
-                <button @click="addImgNote()">upload</button>
+                <img class="upload-btn" @click="addImgNote()" src="../../img/upload.png" />
+                <img @click.nativ="closeModal()" class="close-modal" src="../../img/close.png" />
+        </div>
+
+        <!-- image modal -->
+        <div v-if="videoInput" class="upload-modal">
+                <input type="text" ref="videoInput" placeholder="Enter video URL"/>
+                <img class="upload-btn" @click="addVideoNote()" src="../../img/upload.png" />
+                <img @click.nativ="closeModal()" class="close-modal" src="../../img/close.png" />
         </div>
 
         <div class="note-header">
-            <input type="text" ref="search" placeholder="search here"  @input.nativ="search()"/>
+            <input type="text" ref="search" placeholder="🔎 search here"  @input.nativ="search()"/>
             
-        
-            <!-- <button @click="addTxtNote()">+add TXT note</button> -->
-            <!-- <button @click="addTodoNote()">+add TODO note</button> -->
-            <img class="img-btn" :class="{'text-btn': isShowBtns}" @click.nativ="addTxtNote()" src="../../img/txt.png"/>
-            <img class="img-btn" :class="{'list-btn': isShowBtns}" @click.nativ="addTodoNote()" src="../../img/list.png"/>
-            
-            
-            <!-- <button @click="showVideoInput()">+add VIDEO note</button> -->
-            <img class="img-btn" :class="{'video-btn': isShowBtns}" @click.nativ="showVideoInput()" src="../../img/video.png"/>
-            <input type="text" ref="videoInput" placeholder="Enter video URL" v-if="videoInput"/>
-            <button v-if="videoInput" @click="addVideoNote()">upload</button>
-            
-            <!-- <button @click="showImgInput()">+add IMG note</button> -->
-            <img class="img-btn" :class="{'image-btn': isShowBtns}" @click.nativ="showImgInput()" src="../../img/img.png"/>
+            <img class="header-btn" :class="{'text-btn': isShowBtns}" @click.nativ="addTxtNote()" src="../../img/txt.png"/>
+            <img class="header-btn" :class="{'list-btn': isShowBtns}" @click.nativ="addTodoNote()" src="../../img/list.png"/>
+            <img class="header-btn" :class="{'video-btn': isShowBtns}" @click.nativ="showVideoInput()" src="../../img/video.png"/>
+            <img class="header-btn" :class="{'image-btn': isShowBtns}" @click.nativ="showImgInput()" src="../../img/img.png"/>
          
-
             <img class="plus-btn" @click.nativ="showBtns()" src="../../img/plus1.png"/>
         </div>
         
+        <!-- pinned render -->
         <div class="pinned-cont">
 
-            <section v-for="(note,idx) in notesPinned" class="pinned-note">
-                <component :is="note.type" :note="note" @pinEv="pinned" @del="deleteNote" />
-            </section>
+        <section v-for="(note,idx) in notesPinned" class="pinned-note">
+            <component :is="note.type" :note="note" @pinEv="pinned" @del="deleteNote" />
+        </section>
 
         </div>
 
-            <!-- <span v-if="pinLine">  ***************************</span> -->
-
-        <div ref="grid" data-gs-animate="yes">
-        <!-- :id="idx" -->
-            <div v-for="(note,idx) in notesUnpinned" class="grid-stack-item ui-draggable ui-resizable ui-resizable-autohide"
-            data-gs-x="0" data-gs-y="0"
-            data-gs-width="4" data-gs-height="4">
-                <component :is="note.type" :note="note" @x="getX" @pinEv="pinned" @del="deleteNote"/>
-            </div>
-        
+        <!-- unpinned render -->
+        <div class="grid-stack" data-gs-animate="yes">
+                <component v-for="(note,idx) in notesUnpinned"
+                :is="note.type" :note="note" @pinEv="pinned"
+                @del="deleteNote" @saveLayoutAll="saveLayouts"/>
         </div>
 
     </section>
@@ -68,7 +62,7 @@ export default {
             notesUnpinned: null,
             imgInput: false,
             videoInput: false,
-            isShowBtns:false,
+            isShowBtns: false,
             render: false
         }
     },
@@ -86,14 +80,10 @@ export default {
         // console.log(document.getElementById('0'));
         // document.querySelector('#0');
         // document.getElementById('0')
-        this.$refs.grid.classList.add("grid-stack");
-        this.render = true;
+        // this.$refs.grid.classList.add("grid-stack");
+        // this.render = true;
     },
     computed: {
-        // pinLine() {
-        //     if (!this.notesPinned || !this.notesPinned.length) return false;
-        //     else return true;
-        // },
 
     },
     methods: {
@@ -201,13 +191,25 @@ export default {
                 console.log(this.notesPinned);
             }
         },
-        showBtns(){
-            this.isShowBtns=!this.isShowBtns
+        showBtns() {
+            this.isShowBtns = !this.isShowBtns
         },
-        getX(x) {
-            // console.log('getx',x);
-            // console.log('this note',note);
+        closeModal() {
+            this.imgInput = false
+            this.videoInput = false
+        },
+        saveLayouts() {
+            console.log('app note emited');
 
+            for (var i = 0; i < this.notesUnpinned.length; i++) {
+                let note = this.notesUnpinned[i];
+                let elData = document.getElementById(`${note.id}`).dataset;
+
+                noteService.saveX(`${note.id}`, elData.gsX);
+                noteService.saveY(`${note.id}`, elData.gsY);
+                noteService.saveH(`${note.id}`, elData.gsHeight);
+                noteService.saveW(`${note.id}`, elData.gsWidth);
+            }
 
         }
 
