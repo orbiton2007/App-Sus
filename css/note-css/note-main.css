@@ -8,27 +8,141 @@
 .pin{
     height: 60px;
     position: absolute;
-    top: 0;
-    left: 47%;
+    top: -20px;
+    left: 40%;
     
 }
 
 .note{
     position: relative;
 }
+.note button{
+   border-radius: 50%;
+   height: 40px; 
+   width: 40px;
+   border: none;
+   background-color: transparent;
+   font-size: 1.2rem;
+}
+.note-btns-cont{
+    display: flex;
+    justify-content: flex-end; 
+}
+
+.bcg-btn{
+    /* justify-self: flex-end;
+    align-self: flex-end; */
+}
+/* .pin-btn{
+    position: relative;
+    right:-20px;
+}
+
+.del-btn{
+    position: relative;
+    right:-35px;
+} */
 
 .pinned-cont{
     margin-bottom: 40px;
     display: flex;
     justify-content: center;
     align-items: baseline;
+    flex-wrap: wrap;
 
-    
 }
 
 .pinned-note{
     margin-right: 20px;
 }
+
+.note-header{
+    position: relative;
+    height: 80px;
+    align-items: center;
+    
+}
+
+.note-header input{
+    /* background: linear-gradient(21deg, #10abff, #1beabd); */
+	border: none;
+    border-radius: 5em;
+    padding: 7px;
+    height: 25px;
+    width: 250px;
+    position: relative;
+    top:20px;
+    margin-left:40%;
+    
+}
+
+
+.plus-btn{
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    height: 80px;
+    z-index:20;
+
+}
+
+.img-btn{
+    border-radius: 50%;
+    height: 50px;
+    cursor: pointer;
+    position: absolute;
+    /* transform: translate(0px,0px); */
+    top: 8px;
+    right: 8px;
+    z-index: 10;
+
+}
+
+.text-btn{
+   transform: translate(-80px,-20px);
+   transition: transform 0.3s;
+}
+
+.list-btn{
+    transform: translate(-80px,35px) ; 
+    transition: transform 0.3s; 
+}
+.image-btn{
+   transform: translate(-45px,85px);
+   transition: transform 0.3s; 
+
+}
+.video-btn{
+    transform: translate(10px,100px);
+    transition: transform 0.3s; 
+
+}
+
+.hidden-btns-cont{
+    background-color: rgba(0,0,0,.5);
+    height: 20vh;
+    width: 85%;
+    position: fixed;
+    /* right: 0; */
+    /* transform: translate(100%,0) */
+    z-index:30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hidden-btns-cont input{
+    border: none;
+    border-radius: 5em;
+    padding: 7px;
+    height: 25px;
+    width: 250px;
+}
+
+.hidden-btns-cont button{
+
+}
+
+
 
 .grid-stack-item-content{
 

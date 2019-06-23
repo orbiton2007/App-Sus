@@ -5,16 +5,16 @@ export default {
 
     template: `
     <div class="note note-txt grid-stack-item-content" :style="getStyle">
-        <h3>NOTE VIDEO</h3>
         <img src="../../img/pin2.png" class="pin" v-if="this.note.isPinned"/>
+        <input type="color" ref="bcgColorPicker" @change.nativ="changeBcg()"/>
+        <button @click="deleteNote()" class="del-btn">🗑️</button>
+        <button @click="pinNote()" class="pin-btn">📌</button>
+        <h3>NOTE VIDEO</h3>
 
         
         <iframe width="320" height="240" ref="vid"></iframe>
             {{note.txt}}
         
-        <input type="color" ref="bcgColorPicker" @change.nativ="changeBcg()"/>
-        <button @click="deleteNote()" class="del-btn">🗑️</button>
-        <button @click="pinNote()" class="pin-btn">📌</button>
 
     </div>
     `,

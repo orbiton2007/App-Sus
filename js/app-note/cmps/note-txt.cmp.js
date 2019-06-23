@@ -6,17 +6,24 @@ export default {
 
     template: `
     <div class="note note-txt grid-stack-item-content" disableDrag ="true" :style="getStyle">
+
+        <img src="../../img/pin2.png" class="pin" v-if="this.note.isPinned"/>
+        <div class="note-btns-cont">
+            <input type="color" ref="bcgColorPicker" @change.nativ="changeBcg()" class="bcg-btn"/>
+            <button @click="onDelete()" class="del-btn">🗑️</button>
+            <button @click="pinNote()" class="pin-btn">📌</button>
+
+        </div>
+        
         <h3>NOTE TXT</h3>
         <!-- <textarea ref="area" v-model="editable" cols="30" rows="8" @input.nativ="save()" name="getName"></textarea> -->
-        <img src="../../img/pin2.png" class="pin" v-if="this.note.isPinned"/>
         <!-- onclick='$(this).focus();' -->
         <p contenteditable="true" @input.nativ="saveTxt()" ref="content">
             {{note.txt}}
         </p>
 
-        <input type="color" ref="bcgColorPicker" @change.nativ="changeBcg()"/>
-        <button @click="onDelete()" class="del-btn">🗑️</button>
-        <button @click="pinNote()" class="pin-btn">📌</button>
+
+        
         
 
     </div>

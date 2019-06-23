@@ -6,8 +6,11 @@ export default {
 
     template: `
     <div class="note note-txt grid-stack-item-content" :style="getStyle">
-        <h3>NOTE TO-DO</h3>
         <img src="../../img/pin2.png" class="pin" v-if="this.note.isPinned"/>
+        <input type="color" ref="bcgColorPicker" @change.nativ="changeBcg()"/>
+        <button @click="deleteNote()" class="del-btn">🗑️</button>
+        <button @click="pinNote()" class="pin-btn">📌</button>
+        <h3>NOTE TO-DO</h3>
 
         <p>
             {{note.txt}}
@@ -24,9 +27,7 @@ export default {
             </li>
         </ul>
 
-        <input type="color" ref="bcgColorPicker" @change.nativ="changeBcg()"/>
-        <button @click="deleteNote()" class="del-btn">🗑️</button>
-        <button @click="pinNote()" class="pin-btn">📌</button>
+     
 
     </div>
     `,
