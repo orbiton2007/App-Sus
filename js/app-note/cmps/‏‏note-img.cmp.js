@@ -4,17 +4,18 @@ import noteService from "../services/notes-service.js"
 export default {
 
     template: `
-    <div class="note note-img grid-stack-item-content" :style="getStyle"> 
+    <div class="note note-img grid-stack-item-content" :style="getStyle">
+        <img src="../../img/pin2.png" class="pin" v-if="this.note.isPinned"/>
+        <input type="color" ref="bcgColorPicker" @change.nativ="changeBcg()"/>
+        <button @click="deleteNote()" class="del-btn">🗑️</button>
+        <button @click="pinNote()" class="pin-btn">📌</button> 
         <h3>NOTE IMAGE</h3>
         
-        <img src="../../img/pin2.png" class="pin" v-if="this.note.isPinned"/>
         <img :src="getImg" />
             <!-- {{note.txt}} -->
         <br>
         
-        <input type="color" ref="bcgColorPicker" @change.nativ="changeBcg()"/>
-        <button @click="deleteNote()" class="del-btn">🗑️</button>
-        <button @click="pinNote()" class="pin-btn">📌</button>
+        
 
     </div>
     `,
