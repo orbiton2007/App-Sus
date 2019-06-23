@@ -69,13 +69,16 @@
     }
 }
 @media (max-width: 900px) {
+    .app-emails-container{
+        padding-top: 5px;
+    }
     .menu-div-container{
         display: none;
     }
     .btn-menu-modal{
         display: block;
         position: absolute;
-        top: 63px;
+        top: 59px;
         left: 12px;
         background: none;
         border: none;
@@ -102,14 +105,13 @@
     .app-emails-container{
         background-image: url('./images/background.jpg');
         background-size: cover;
-        padding-top: 5px;
+        padding-top: 2px;
     }
     .btn-menu-modal{
-        display: block;
-        position: absolute;
-        top: 47px;
-        left: 12px;
-        background: none;
-        border: none;
+        top: 44px;
+        left: 0px;
+    }
+    .filter-div-container{
+        margin-bottom: 2px;
     }
 }

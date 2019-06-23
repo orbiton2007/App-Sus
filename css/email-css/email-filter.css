@@ -9,9 +9,10 @@
     border: 0.5px white solid;
     color: white;
     border-radius: 3px;
+    font-size: 1rem;
+    font-weight: 500;
     padding: 10px;
     cursor: pointer;
-    font-size: 0.9rem;
 }
 .email-filter-container button:hover{
     background-color: royalblue;
@@ -38,10 +39,8 @@
     .email-filter-container{
         padding: 15px;
     }
-    .email-filter-container button{
-        padding: 8px;
-        font-size: 0.9rem;
-        font-weight: 500;
+    .email-filter-container .filter-btns{
+        margin-left: 35px
     }
     .email-filter-container .filter-input{
         margin-left: 6px;
@@ -49,11 +48,14 @@
     .email-filter-container .filter-input input{
         padding: 6px;
     }
-    
 }
 @media (max-width: 440px) {
+    .email-filter-container button{
+        padding: 9px;
+        font-size: 0.9rem;
+    }
     .email-filter-container .filter-input input{
-        width: 105px;
-        padding: 4px;
+        width: 100px;
+        padding: 7px;
     }
 }
