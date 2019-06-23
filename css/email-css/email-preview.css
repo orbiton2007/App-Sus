@@ -6,7 +6,7 @@
     border: 0.5px white solid;
     margin: 0;
     font-size: 1.1rem;
-    padding: 8px;
+    padding: 12px 8px 12px 8px;
     list-style-type: none;
     margin-bottom: 5px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -21,7 +21,17 @@
 }
 .preview-details{
     cursor: pointer;
-    width: 75%;
+    width: 80%;
+}
+.preview-details .name{
+    font-size: 1.2rem;
+    font-weight: 600;
+    width: 130px;
+    overflow: hidden;
+}
+.preview-details .subject{
+    width: 150px;
+    overflow: hidden;
 }
 .readed{
     background-color: rgba(88, 88, 88, 0.877);
@@ -30,23 +40,63 @@
     background-color: rgba(0, 0, 0, 0.860);
 }
 .icon-star{
-    width: 20px;
+    width: 23px;
     cursor: pointer;
     margin-right: 7px;
 }
 .email-imgs-preview .icon-readed{
-    width: 20px;
+    width: 23px;
     cursor: pointer;
 }
 .email-imgs-preview .icon-trash{
-    width: 20px;
+    width: 23px;
     margin-left: 5px;
     cursor: pointer;
 }
+
+
+
 
 @media (max-width: 1100px) {
     .list-emails li{
         font-size: 1rem;
         margin-bottom: 4px;
+    }
+}
+@media (max-width: 800px) {
+    .div-star-details{
+        width: 100%;
+    }
+}
+@media (max-width: 650px) {
+    .div-star-details{
+        font-size: 0.95rem;
+    }
+}
+@media (max-width: 600px) {
+    .list-emails li{
+        margin-bottom: 2px;
+    }
+    .preview-details{
+        flex-direction: column;
+        width: 100%;
+    }
+    .preview-details .name{
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+    .div-star-details{
+        width: 70%;
+    }
+    .icon-star{
+        width: 25px;
+        margin-right: 7px;
+    }
+    .email-imgs-preview .icon-readed{
+        width: 30px;
+    }
+    .email-imgs-preview .icon-trash{
+        width: 30px;
+        margin-left: 5px;
     }
 }

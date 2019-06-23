@@ -39,3 +39,43 @@
 .sec-compose button:hover{
     background-color: royalblue;
  }
+
+
+
+ @media (max-width: 700px) {
+    .sec-compose{
+        width: 350px;
+        height: 400px;
+        padding: 20px;
+     }
+     .sec-compose h3{
+        margin-top: 2px;
+    }
+     .sec-compose input{
+        padding: 3px;
+        font-size: 0.9rem;
+    }
+    .sec-compose textarea{
+        width: 320px;
+        height: 180px;
+     }
+}
+ @media (max-width: 500px) {
+    .sec-compose{
+        left: 0;
+        width: 330px;
+        height: 380px;
+        padding: 15px;
+     }
+     .sec-compose h3{
+        margin-top: 2px;
+    }
+     .sec-compose input{
+        padding: 2px;
+        font-size: 0.9rem;
+    }
+    .sec-compose textarea{
+        width: 300px;
+        height: 160px;
+     }
+}

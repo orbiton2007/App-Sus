@@ -3,15 +3,15 @@ import emailDetails from './email-details.cmp.js'
 
 export default {
     template: `
-    <div class="flex column">
+    <div class="div-email-preview-container flex column">
             <li :class="isEmailReaded">
                 <div class="flex space-between">
                     <div class="div-star-details flex">
                         <span><img class="icon-star" @click="markFavorite(email)" :src="favorite"></span>
                         <div @click="getDetails(email)" class="preview-details flex space-between">
-                            <span>{{email.name}}</span>
-                            <span>{{email.subject}}</span>
-                            <span>{{email.sentAt}}</span>
+                            <span class="name">{{email.name}}</span>
+                            <span class="subject">{{email.subject}}</span>
+                            <span class="date">{{email.sentAt}}</span>
                         </div>
                     </div>
                     <div class="flex email-imgs-preview">

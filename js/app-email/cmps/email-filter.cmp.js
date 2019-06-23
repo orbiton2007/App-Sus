@@ -9,7 +9,7 @@ export default {
                 <button @click="emitFilterUnreaded">Unread</button>
             </div>
             <div class="filter-input">
-                <input type="text" placeholder="Search Email..." v-model="filter.txt" @keyup="emitFilter">
+                <input type="text" placeholder="Search Email" v-model="filter.txt" @keyup="emitFilter">
             </div>
         </section>
     `,
