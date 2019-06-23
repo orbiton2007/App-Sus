@@ -11,28 +11,28 @@ export default {
             :data-gs-width="note.w" :data-gs-height="note.h"
             @click.nativ="updateLayout()">
 
-        <div class="note note-txt grid-stack-item-content" :style="getStyle">
+        <div class="note grid-stack-item-content" :style="getStyle">
             <img src="../../img/pin2.png" class="pin" v-if="this.note.isPinned"/>
 
             <img @click.stop="onChangeBcg()" class="bcg-btn" src="../../img/color.png"/>
+            <span class="title">Todo Note</span>
             <button @click.stop="deleteNote()" class="del-btn">🗑️</button>
             <button @click.stop="pinNote()" class="pin-btn">📌</button>
             <br>
-
-            <h3>NOTE TO-DO</h3>
+          
 
             <p>
                 {{note.txt}}
             </p>
 
-            <input type="text" ref="input" placeholder="Enter todo here"/> <button @click.stop="addTodo()">➕</button>
+            <input type="text" class="todo-input" ref="input" placeholder="Enter todo here"/> <button @click.stop="addTodo()">➕</button>
             <ul>
                 <li v-for="(todo,idx) in note.todos"
                     @click.nativ="toggleDone(idx)" 
                     :class="{'todo-done' : note.todos[idx].isDone}" 
                     :idx="idx">
                     {{todo.txt}}
-                    <button @click.stop="deleteTodo(idx)">x</button>
+                    <button class="todo-x-btn" @click.stop="deleteTodo(idx)">✗</button>
                 </li>
             </ul>
 

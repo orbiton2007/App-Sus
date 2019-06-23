@@ -14,14 +14,16 @@ export default {
             <img src="../../img/pin2.png" class="pin" v-if="this.note.isPinned"/>
 
             <img @click.stop="onChangeBcg()" class="bcg-btn" src="../../img/color.png"/>
+            <span class="title">Image Note</span>
             <button @click.stop="deleteNote()" class="del-btn">🗑️</button>
             <button @click.stop="pinNote()" class="pin-btn">📌</button> 
             <br>
+            <br>
+           
 
-            <h3>NOTE IMAGE</h3>
-            
+            <!-- make editable -->
+            {{note.txt}}
             <img :src="getImg" />
-            <!-- {{note.txt}} -->
             
             <input type="color" ref="bcgColorPicker" class="input-color" @change.nativ="changeBcg()"/>
         </div>

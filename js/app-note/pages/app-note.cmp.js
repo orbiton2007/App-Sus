@@ -26,12 +26,12 @@ export default {
         </div>
 
         <div class="note-header">
-            <input type="text" ref="search" placeholder="search here"  @input.nativ="search()"/>
+            <input type="text" ref="search" placeholder="🔎 search here"  @input.nativ="search()"/>
             
-            <img class="img-btn" :class="{'text-btn': isShowBtns}" @click.nativ="addTxtNote()" src="../../img/txt.png"/>
-            <img class="img-btn" :class="{'list-btn': isShowBtns}" @click.nativ="addTodoNote()" src="../../img/list.png"/>
-            <img class="img-btn" :class="{'video-btn': isShowBtns}" @click.nativ="showVideoInput()" src="../../img/video.png"/>
-            <img class="img-btn" :class="{'image-btn': isShowBtns}" @click.nativ="showImgInput()" src="../../img/img.png"/>
+            <img class="header-btn" :class="{'text-btn': isShowBtns}" @click.nativ="addTxtNote()" src="../../img/txt.png"/>
+            <img class="header-btn" :class="{'list-btn': isShowBtns}" @click.nativ="addTodoNote()" src="../../img/list.png"/>
+            <img class="header-btn" :class="{'video-btn': isShowBtns}" @click.nativ="showVideoInput()" src="../../img/video.png"/>
+            <img class="header-btn" :class="{'image-btn': isShowBtns}" @click.nativ="showImgInput()" src="../../img/img.png"/>
          
             <img class="plus-btn" @click.nativ="showBtns()" src="../../img/plus1.png"/>
         </div>
@@ -62,7 +62,7 @@ export default {
             notesUnpinned: null,
             imgInput: false,
             videoInput: false,
-            isShowBtns:false,
+            isShowBtns: false,
             render: false
         }
     },
@@ -191,26 +191,26 @@ export default {
                 console.log(this.notesPinned);
             }
         },
-        showBtns(){
-            this.isShowBtns=!this.isShowBtns
+        showBtns() {
+            this.isShowBtns = !this.isShowBtns
         },
-        closeModal(){
+        closeModal() {
             this.imgInput = false
             this.videoInput = false
         },
         saveLayouts() {
             console.log('app note emited');
 
-            for (var i = 0; i < this.notesUnpinned.length; i++){
-                let note = this.notesUnpinned[i];                
+            for (var i = 0; i < this.notesUnpinned.length; i++) {
+                let note = this.notesUnpinned[i];
                 let elData = document.getElementById(`${note.id}`).dataset;
 
-                noteService.saveX(`${note.id}`,elData.gsX);
-                noteService.saveY(`${note.id}`,elData.gsY);
-                noteService.saveH(`${note.id}`,elData.gsHeight);
-                noteService.saveW(`${note.id}`,elData.gsWidth);
+                noteService.saveX(`${note.id}`, elData.gsX);
+                noteService.saveY(`${note.id}`, elData.gsY);
+                noteService.saveH(`${note.id}`, elData.gsHeight);
+                noteService.saveW(`${note.id}`, elData.gsWidth);
             }
-            
+
         }
 
     },

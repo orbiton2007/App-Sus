@@ -15,11 +15,11 @@ export default {
             <img src="../../img/pin2.png" class="pin" v-if="this.note.isPinned"/>
 
             <img @click.stop="onChangeBcg()" class="bcg-btn" src="../../img/color.png"/>
+            <span class="title">Text Note</span>
             <button @click.stop="onDelete()" class="del-btn">🗑️</button>
             <button @click.stop="pinNote()" class="pin-btn">📌</button>
             <br>
-
-            <h3>NOTE TXT</h3>
+            <br>
 
             <!-- <textarea ref="area" v-model="editable" cols="30" rows="8" @input.nativ="save()" name="getName"></textarea> -->
             <!-- onclick='$(this).focus();' -->

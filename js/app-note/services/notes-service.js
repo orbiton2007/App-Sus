@@ -34,9 +34,10 @@ function getNotes() {
 
 function createNotes() {
     let arr = [
-        { id: utilService.makeId(), txt: 'this is my note!', type: 'note-txt', bcg: '#ADD8E6', isPinned: false, x: 0, y: 0, w: 4, h: 4 },
-        { id: utilService.makeId(), txt: 'my second nice note', todos: [{ txt: 'todo number 1', isDone: false }, { txt: 'todo number 2', isDone: false }], type: 'note-todo', bcg: '#ADD8E6', isPinned: false, x: 0, y: 0, w: 4, h: 4 },
-        { id: utilService.makeId(), txt: 'this is my last note for now!!! :)', img: "./../../../img/milk.jpg", type: 'note-img', bcg: '#ADD8E6', isPinned: false, x: 0, y: 0, w: 4, h: 4 },
+        { id: utilService.makeId(), txt: 'This is my note! Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, aut ipsam optio mollitia temp ', type: 'note-txt', bcg:  utilService.getRandomColor(), isPinned: false, x: 0, y: 0, w: 4, h: 4 },
+        { id: utilService.makeId(), txt: 'My shopping list', todos: [{ txt: 'buy milk', isDone: false }, { txt: 'buy ugi', isDone: false }], type: 'note-todo', bcg:  utilService.getRandomColor(), isPinned: false, x: 0, y: 0, w: 4, h: 4 },
+        { id: utilService.makeId(), txt: 'Tommorow is another day :)', img: "./../../../img/sunrise.jpg", type: 'note-img', bcg:  utilService.getRandomColor(), isPinned: false, x: 0, y: 0, w: 4, h: 4 },
+        { id: utilService.makeId(), txt: 'Watch it when you have time', video: "https://www.youtube.com/watch?v=N_ZDvdczO6I", type: 'note-video', bcg:  utilService.getRandomColor(), isPinned: false, x: 0, y: 0, w: 4, h: 4 },
     ]
 
     return arr;

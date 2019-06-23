@@ -14,15 +14,15 @@ export default {
         <img src="../../img/pin2.png" class="pin" v-if="this.note.isPinned"/>
 
         <img @click.stop="onChangeBcg()" class="bcg-btn" src="../../img/color.png"/>
+        <span class="title">Video Note</span>
         <button @click.stop="deleteNote()" class="del-btn">🗑️</button>
         <button @click.stop="pinNote()" class="pin-btn">📌</button>
-        <br>
-
-        <h3>NOTE VIDEO</h3>
-
+        <br><br>
+            
+        <!-- make editable -->
+        {{note.txt}}
         <iframe width="320" height="240" ref="vid"></iframe>
 
-        {{note.txt}}
         
         <input type="color" ref="bcgColorPicker" class="input-color" @change.nativ="changeBcg()"/>
         </div>
