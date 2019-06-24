@@ -78,7 +78,7 @@
     .btn-menu-modal{
         display: block;
         position: absolute;
-        top: 59px;
+        top: 75px;
         left: 12px;
         background: none;
         border: none;
@@ -106,7 +106,7 @@
         padding-top: 2px;
     }
     .btn-menu-modal{
-        top: 44px;
+        top: 64px;
         left: 0px;
     }
     .filter-div-container{
