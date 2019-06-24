@@ -12,11 +12,11 @@ export default {
     </section>
     `,
     methods:{
-        goMail(){
-            this.$router.push('/emails')
-        },
-        goNote(){
-            this.$router.push('/notes')
-        }
+        // goMail(){
+        //     this.$router.push('/emails')
+        // },
+        // goNote(){
+        //     this.$router.push('/notes')
+        // }
     }
 }
