@@ -49,7 +49,7 @@ export default {
         <div class="unpinned-cont">
                 <component v-for="(note,idx) in notesUnpinned"
                 :is="note.type" :note="note" @pinEv="pinned"
-                @del="deleteNote" @saveLayoutAll="saveLayouts"/>
+                @del="deleteNote"/>
         </div>
 
     </section>
@@ -77,18 +77,14 @@ export default {
 
     },
     mounted() {
-        // console.log(document.getElementById('0'));
-        // document.querySelector('#0');
-        // document.getElementById('0')
-        // this.$refs.grid.classList.add("grid-stack");
-        // this.render = true;
+
     },
     computed: {
 
     },
     methods: {
         pinned(id) {
-            console.log('pin event', id);
+            // console.log('pin event', id);
             noteService.togglePin(id);
 
             noteService.getNotes()
@@ -96,11 +92,11 @@ export default {
                     this.notesAll = notes;
                     this.notesPinned = notes.filter(note => note.isPinned);
                     this.notesUnpinned = notes.filter(note => !note.isPinned);
-                    console.log('pinned:', this.notesPinned, 'unpinned:', this.notesUnpinned);
+                    // console.log('pinned:', this.notesPinned, 'unpinned:', this.notesUnpinned);
                 })
         },
         deleteNote(id) {
-            console.log('delete event', id);
+            // console.log('delete event', id);
             noteService.del(id);
 
             noteService.getNotes()
@@ -108,7 +104,7 @@ export default {
                     this.notesAll = notes;
                     this.notesPinned = notes.filter(note => note.isPinned);
                     this.notesUnpinned = notes.filter(note => !note.isPinned);
-                    console.log('pinned:', this.notesPinned, 'unpinned:', this.notesUnpinned);
+                    // console.log('pinned:', this.notesPinned, 'unpinned:', this.notesUnpinned);
                 })
         },
         addTxtNote() {
@@ -168,16 +164,14 @@ export default {
 
         },
         search() {
-            console.log('search:', this.$refs.search.value);
+            // console.log('search:', this.$refs.search.value);
             let searchStr = this.$refs.search.value;
 
             if (!searchStr) {
-                console.log('empty search');
+                // console.log('empty search');
 
                 this.notesUnpinned = this.notesAll.filter(note => !note.isPinned);
                 this.notesPinned = this.notesAll.filter(note => note.isPinned);
-                console.log(this.notesUnpinned);
-                console.log(this.notesPinned);
 
             } else {
                 this.notesUnpinned = this.notesAll.filter(note => {
@@ -187,7 +181,6 @@ export default {
                         } else return note.todos.some((todo) => todo.txt.includes(searchStr))
                     }
                 });
-                console.log(this.notesUnpinned);
 
                 this.notesPinned = this.notesAll.filter(note => {
                     if (note.isPinned) {
@@ -196,7 +189,6 @@ export default {
                         } else return note.todos.some((todo) => todo.txt.includes(searchStr))
                     }
                 });
-                console.log(this.notesPinned);
             }
         },
         showBtns() {
@@ -206,20 +198,6 @@ export default {
             this.imgInput = false
             this.videoInput = false
         },
-        saveLayouts() {
-            console.log('app note emited');
-
-            for (var i = 0; i < this.notesUnpinned.length; i++) {
-                let note = this.notesUnpinned[i];
-                let elData = document.getElementById(`${note.id}`).dataset;
-
-                noteService.saveX(`${note.id}`, elData.gsX);
-                noteService.saveY(`${note.id}`, elData.gsY);
-                noteService.saveH(`${note.id}`, elData.gsHeight);
-                noteService.saveW(`${note.id}`, elData.gsWidth);
-            }
-
-        }
 
     },
     components: {

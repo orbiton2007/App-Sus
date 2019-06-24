@@ -19,7 +19,7 @@ export default {
 
             <!-- <textarea ref="area" v-model="editable" cols="30" rows="8" @input.nativ="save()" name="getName"></textarea> -->
             <!-- onclick='$(this).focus();' -->
-            <p contenteditable="true" @input.nativ="saveTxt()" ref="content">
+            <p contenteditable="true" @focusout.nativ="saveTxt()" ref="content">
                 {{note.txt}}
             </p>        
 
@@ -39,8 +39,6 @@ export default {
         }
     },
     created() {
-        // console.log('created emit');
-        // this.$emit('x', 4)  
 
     },
     mounted() {
@@ -93,7 +91,7 @@ export default {
             if (this.diffX > 0 && this.diffY < 0) this.el.style.transform = `translate3d(-${this.diffX}px,${this.diffY * -1}px, 0)`;
         },
         dragEnd(ev) {
-            console.log('drag end', ev);
+            // console.log('drag end', ev);
             this.el.removeEventListener('mousemove', this.move)
             this.el.style.zIndex='unset';
 

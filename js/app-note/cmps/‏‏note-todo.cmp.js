@@ -110,13 +110,14 @@ export default {
             this.$emit('del', this.note.id)
         },
         dragStart(ev) {
-            console.log('drag start', ev);
+            // console.log('drag start', ev);
 
             this.el = document.getElementById(`${this.note.id}`);
             this.clickedX = ev.clientX;
             this.clickedY = ev.clientY;
             this.el.addEventListener('mousemove', this.move);
             this.el.style.zIndex='100';
+            this.el.style.cursor='move';
 
         },
         move(ev) {
@@ -129,7 +130,7 @@ export default {
             if (this.diffX > 0 && this.diffY < 0) this.el.style.transform = `translate3d(-${this.diffX}px,${this.diffY * -1}px, 0)`;
         },
         dragEnd(ev) {
-            console.log('drag end', ev);
+            // console.log('drag end', ev);
             this.el.removeEventListener('mousemove', this.move);
             this.el.style.zIndex='unset';
 
@@ -172,7 +173,6 @@ export default {
             this.diffX = 0;
             this.diffY = 0;
         }
-
 
     },
     components: {
