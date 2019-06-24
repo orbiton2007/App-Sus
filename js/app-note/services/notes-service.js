@@ -38,7 +38,7 @@ function createNotes() {
     let arr = [
         { id: utilService.makeId(), txt: 'This is my note! Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, aut ipsam optio mollitia temp ', type: 'note-txt', bcg:  utilService.getRandomColor(), isPinned: false, x: 0, y: 0, w: 4, h: 4 },
         { id: utilService.makeId(), txt: 'My shopping list', todos: [{ txt: 'buy milk', isDone: false }, { txt: 'buy ugi', isDone: false }], type: 'note-todo', bcg:  utilService.getRandomColor(), isPinned: false, x: 5, y: 5, w: 4, h: 4 },
-        { id: utilService.makeId(), txt: 'Tommorow is another day :)', img: "img/sunrise.jpg", type: 'note-img', bcg:  utilService.getRandomColor(), isPinned: false, x: 10, y: 10, w: 4, h: 4 },
+        { id: utilService.makeId(), txt: 'Tommorow is another day :)', img: "img/sunrise.jpeg", type: 'note-img', bcg:  utilService.getRandomColor(), isPinned: false, x: 10, y: 10, w: 4, h: 4 },
         { id: utilService.makeId(), txt: 'Watch it when you have time', video: "https://www.youtube.com/watch?v=N_ZDvdczO6I", type: 'note-video', bcg:  utilService.getRandomColor(), isPinned: false, x: 15, y: 15, w: 4, h: 4 },
     ]
 

@@ -7,7 +7,7 @@ export default {
 
         <div class="note note-video" :id="note.id" @mousedown.nativ.stop.prevent="dragStart($event)" @mouseup.nativ.stop.prevent="dragEnd($event)"
             :style="getGrid">
-        <img src="img/pin2.png" class="pin" v-if="this.note.isPinned"/>
+        <img src="img/Pin2.png" class="pin" v-if="this.note.isPinned"/>
 
         <img @click.stop="onChangeBcg()" class="bcg-btn" src="img/color.png"/>
         <span class="title">Video Note</span>
@@ -79,6 +79,9 @@ export default {
         },
         focusP(){
             document.querySelector(`.${this.note.id}p`).focus();
+        },
+        saveTxt() {
+            noteService.editNoteTxt(this.note.id, this.$refs.content.innerText);
         },
         dragStart(ev) {
             // console.log('drag start', ev);

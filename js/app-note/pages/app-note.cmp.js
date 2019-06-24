@@ -15,14 +15,14 @@ export default {
         <div v-if="imgInput" class="upload-modal">
                 <input type="text" ref="imgInput" placeholder="Enter img URL"/>
                 <img class="upload-btn" @click="addImgNote()" src="img/upload.png" />
-                <img @click.nativ="closeModal()" class="close-modal" src="img/close.png" />
+                <img @click.nativ="closeModal()" class="close-modal" src="img/Close.png" />
         </div>
 
         <!-- image modal -->
         <div v-if="videoInput" class="upload-modal">
                 <input type="text" ref="videoInput" placeholder="Enter video URL"/>
                 <img class="upload-btn" @click="addVideoNote()" src="img/upload.png" />
-                <img @click.nativ="closeModal()" class="close-modal" src="img/close.png" />
+                <img @click.nativ="closeModal()" class="close-modal" src="img/Close.png" />
         </div>
 
         <div class="note-header">
