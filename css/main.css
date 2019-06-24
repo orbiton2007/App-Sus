@@ -80,7 +80,10 @@ li{
     cursor: pointer;
 }
 .sec-home-container .img-note{
-    width: 250px;
+    position: absolute;
+    top: 250px;
+    right: 200px;
+    width: 200px;
     cursor: pointer;
 }
 .sec-home-container h1{
