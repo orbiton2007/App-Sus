@@ -11,7 +11,7 @@ body{
     height: 100%;
 }
 .header-container{
-    height: 30px;
+    height: 50px;
     background-color: black;
 }
 .header-container a{
@@ -29,6 +29,47 @@ button{
 li{
     list-style: none;
 }
+.header-container .icon-burger{
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    width: 35px;
+    cursor: pointer;
+    z-index: 18;
+}
+
+.header-container .icon-homepage{
+    transform: translate(-80px,62px);
+    transition: transform 0.4s;
+    /* width: 30px; */
+    cursor: pointer;
+}
+.header-container .icon-email{
+    transform: translate(-150px,62px) ; 
+    transition: transform 0.4s; 
+    /* width: 30px; */
+    cursor: pointer;
+}
+.header-container .icon-note{
+    transform: translate(-220px,62px);
+    transition: transform 0.4s; 
+    /* width: 30px; */
+    cursor: pointer;
+}
+.header-btn{
+    border-radius: 50%;
+    height: 50px;
+    cursor: pointer;
+    position: absolute;
+    /* transform: translate(0px,0px); */
+    top: -60px;
+    right: 0px;
+    z-index: 10;
+}
+
+
+
+
 
 
 /* helpers */
