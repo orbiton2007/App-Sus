@@ -19,7 +19,7 @@ export default {
 
             <!-- <textarea ref="area" v-model="editable" cols="30" rows="8" @input.nativ="save()" name="getName"></textarea> -->
             <!-- onclick='$(this).focus();' -->
-            <p contenteditable="true" class="p" @click.nativ.stop="focusP()" @focusout.nativ="saveTxt()" ref="content">
+            <p contenteditable="true" :class="getClassP" @click.nativ.stop="focusP()" @focusout.nativ="saveTxt()" ref="content">
                 {{note.txt}}
             </p>        
 
@@ -48,6 +48,9 @@ export default {
         getGrid() {
             return `grid-column-start: ${this.note.x}; grid-row-start: ${this.note.y};background-image: linear-gradient(${this.note.bcg}, rgba(173, 216, 230, 0.6)); `
         },
+        getClassP(){
+            return `${this.note.id}p`
+        }
     },
     methods: {
         onChangeBcg(){
@@ -69,7 +72,7 @@ export default {
             noteService.editNoteTxt(this.note.id, this.$refs.content.innerText);
         },
         focusP(){
-            document.querySelector('.p').focus();
+            document.querySelector(`.${this.note.id}p`).focus();
         },
         dragStart(ev) {
             // console.log('drag start', ev);

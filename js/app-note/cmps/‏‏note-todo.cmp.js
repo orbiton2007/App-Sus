@@ -16,7 +16,7 @@ export default {
             <br>
           
 
-           <p contenteditable="true" class="p" @focusout.nativ="saveTxt()" @click.nativ.stop="focusP()" ref="content">
+           <p contenteditable="true" :class="getClassP" @focusout.nativ="saveTxt()" @click.nativ.stop="focusP()" ref="content">
                 {{note.txt}}
             </p>   
 
@@ -55,6 +55,9 @@ export default {
         getGrid() {
             return `grid-column-start: ${this.note.x}; grid-row-start: ${this.note.y};background-image: linear-gradient(${this.note.bcg}, rgba(173, 216, 230, 0.6));`
         },
+        getClassP(){
+            return `${this.note.id}p`
+        }
 
     },
     methods: {
@@ -113,7 +116,7 @@ export default {
             document.querySelector('.todo-input').focus();
         },
         focusP(){
-            document.querySelector('.p').focus();
+            document.querySelector(`.${this.note.id}p`).focus();
         },
         saveTxt() {
             noteService.editNoteTxt(this.note.id, this.$refs.content.innerText);

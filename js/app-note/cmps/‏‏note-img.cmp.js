@@ -16,7 +16,7 @@ export default {
             <br>
             <br>
            
-            <p contenteditable="true" class="p" @click.nativ.stop="focusP()" @focusout.nativ="saveTxt()" ref="content">
+            <p contenteditable="true" :class="getClassP" @click.nativ.stop="focusP()" @focusout.nativ="saveTxt()" ref="content">
                 {{note.txt}}
             </p>  
             <img :src="getImg" />
@@ -57,6 +57,9 @@ export default {
             background-image: linear-gradient(${this.note.bcg}, rgba(173, 216, 230, 0.6));
             `
         },
+        getClassP(){
+            return `${this.note.id}p`
+        }
 
     },
     methods: {
@@ -79,7 +82,7 @@ export default {
             noteService.editNoteTxt(this.note.id, this.$refs.content.innerText);
         },
         focusP(){
-            document.querySelector('.p').focus();
+            document.querySelector(`.${this.note.id}p`).focus();
         },
         dragStart(ev) {
             // console.log('drag start', ev);

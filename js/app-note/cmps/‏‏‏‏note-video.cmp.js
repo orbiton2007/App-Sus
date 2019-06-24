@@ -15,7 +15,7 @@ export default {
         <button @click.stop="pinNote()" class="pin-btn">📌</button>
         <br><br>
             
-        <p contenteditable="true" class="p" @click.nativ.stop="focusP()" @focusout.nativ="saveTxt()" ref="content">
+        <p contenteditable="true" :class="getClassP" @click.nativ.stop="focusP()" @focusout.nativ="saveTxt()" ref="content">
                 {{note.txt}}
             </p> 
         <iframe width="320" height="240" ref="vid"></iframe>
@@ -57,6 +57,9 @@ export default {
         getGrid() {
             return `grid-column-start: ${this.note.x}; grid-row-start: ${this.note.y};background-image: linear-gradient(${this.note.bcg}, rgba(173, 216, 230, 0.6));`
         },
+        getClassP(){
+            return `${this.note.id}p`
+        }
 
     },
     methods: {
@@ -75,7 +78,7 @@ export default {
             this.$emit('del', this.note.id)
         },
         focusP(){
-            document.querySelector('.p').focus();
+            document.querySelector(`.${this.note.id}p`).focus();
         },
         dragStart(ev) {
             // console.log('drag start', ev);
