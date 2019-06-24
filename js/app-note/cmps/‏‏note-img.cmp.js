@@ -100,7 +100,7 @@ export default {
             if (this.diffX < 0 && this.diffY > 0) this.el.style.transform = `translate3d(${this.diffX * -1}px,-${this.diffY}px, 0)`;
             if (this.diffX > 0 && this.diffY > 0) this.el.style.transform = `translate3d(-${this.diffX}px,-${this.diffY}px, 0)`;
             if (this.diffX > 0 && this.diffY < 0) this.el.style.transform = `translate3d(-${this.diffX}px,${this.diffY * -1}px, 0)`;
-            let griddDiffY = Math.round(this.diffY / 10);
+            let griddDiffY = Math.round(this.diffY / 15);
             let start = +this.el.style.gridRowStart + griddDiffY;
                 if (start < 0) {
                     this.dragEnd();
@@ -115,7 +115,7 @@ export default {
                if (this.diffX == 0) return;
    
                if (this.diffX < 0) {
-                   let griddDiffX = Math.round(this.diffX / 10) * -1;
+                   let griddDiffX = Math.round(this.diffX / 15) * -1;
                    let start = +this.el.style.gridColumnStart + griddDiffX;
                    if (start < 0) {
                        start = 0;
@@ -126,7 +126,7 @@ export default {
                    noteService.saveX(this.note.id, griddDiffX);
                    this.el.style.transform = `translate3d(0px,0px, 0)`;
                } else if (this.diffX > 0) {
-                   let griddDiffX = Math.round(this.diffX / 10);
+                   let griddDiffX = Math.round(this.diffX / 15);
                    let start = +this.el.style.gridColumnStart - griddDiffX;
                    if (start < 0) {
                        start = 0;
@@ -139,7 +139,7 @@ export default {
                }
    
                if (this.diffY < 0) {
-                   let griddDiffY = Math.round(this.diffY / 10) * -1;
+                   let griddDiffY = Math.round(this.diffY / 15) * -1;
                    let start = +this.el.style.gridRowStart + griddDiffY;
                    if (start < 0) {
                        start = 0;
@@ -150,7 +150,7 @@ export default {
                    noteService.saveY(this.note.id, griddDiffY);
                    this.el.style.transform = `translate3d(0px,0px, 0)`;
                } else if (this.diffY > 0) {
-                   let griddDiffY = Math.round(this.diffY / 10);
+                   let griddDiffY = Math.round(this.diffY / 15);
                    let start = +this.el.style.gridRowStart - griddDiffY;
                    if (start < 0) {
                        start = 0;

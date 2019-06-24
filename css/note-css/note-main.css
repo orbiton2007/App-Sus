@@ -31,8 +31,8 @@
 .unpinned-cont{
     height: 120vh;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 10px);
-    grid-template-rows: repeat(auto-fill, 10px);
+    grid-template-columns: repeat(auto-fill, 15px);
+    grid-template-rows: repeat(auto-fill, 15px);
 }
 
 .pinned-cont{
