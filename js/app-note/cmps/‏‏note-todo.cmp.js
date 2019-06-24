@@ -7,7 +7,7 @@ export default {
     template: `
         <div class="note" :id="note.id" @mousedown.nativ.stop.prevent="dragStart($event)" @mouseup.nativ.stop.prevent="dragEnd($event)"
             :style="getGrid">
-            <img src="img/pin2.png" class="pin" v-if="this.note.isPinned"/>
+            <img src="img/Pin2.png" class="pin" v-if="this.note.isPinned"/>
 
             <img @click.stop="onChangeBcg()" class="bcg-btn" src="img/color.png"/>
             <span class="title">Todo Note</span>
