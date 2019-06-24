@@ -20,6 +20,7 @@
     box-shadow: 0 2px 10px 1px rgba(0,0,0,.2);
     box-shadow: -7px 10px rgba(0,0,0,0.3);
     padding: 10px;
+    /* cursor: move; */
 
 }
 .note-video{
@@ -28,10 +29,10 @@
 }
 
 .unpinned-cont{
-    height: 200vh;
+    height: 120vh;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 10px);
-    grid-template-rows: repeat(auto-fill, 10px);
+    grid-template-columns: repeat(auto-fill, 15px);
+    grid-template-rows: repeat(auto-fill, 15px);
 }
 
 .pinned-cont{
@@ -56,8 +57,8 @@
 
 
 img{
-    max-height: 200px;
-    max-width: 200px;
+    max-height: 250px;
+    max-width: 250px;
 }
 
 /* buttons */
