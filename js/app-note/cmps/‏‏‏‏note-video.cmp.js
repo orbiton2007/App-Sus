@@ -80,6 +80,9 @@ export default {
         focusP(){
             document.querySelector(`.${this.note.id}p`).focus();
         },
+        saveTxt() {
+            noteService.editNoteTxt(this.note.id, this.$refs.content.innerText);
+        },
         dragStart(ev) {
             // console.log('drag start', ev);
 
