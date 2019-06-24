@@ -24,12 +24,15 @@ export default {
         },
         goHome(){
             this.$router.push('/')
+            this.showMenu = !this.showMenu;
         },
         goMail(){
             this.$router.push('/emails')
+            this.showMenu = !this.showMenu;
         },
         goNote(){
             this.$router.push('/notes')
+            this.showMenu = !this.showMenu;
         }
     }
 }

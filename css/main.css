@@ -66,9 +66,33 @@ li{
     right: 0px;
     z-index: 10;
 }
+.sec-home-container {
+    height: 100vh;
+    background-color: rgba(153, 143, 143, 0.87);
+}
+.sec-home-container .imgs-home {
+    /* width: 60%;
+    margin: 0 auto; */
+    /* padding-top: 15%; */
+}
+.sec-home-container .img-mail{
+    width: 250px;
+    cursor: pointer;
+}
+.sec-home-container .img-note{
+    position: absolute;
+    top: 250px;
+    right: 200px;
+    width: 200px;
+    cursor: pointer;
+}
+.sec-home-container h1{
+    transition: 3s;
+    font-size: 10rem;
+    text-align: center;
+}
 
-
-
+  
 
 
 
