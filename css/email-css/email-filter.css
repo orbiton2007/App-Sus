@@ -1,6 +1,6 @@
 
 .email-filter-container{
-    background-color: rgba(0, 0, 0, 0.860);
+    background-color: rgba(0, 0, 0, 0.820);
     border: 0.5px white solid;
     padding: 23px;
 }
@@ -37,6 +37,7 @@
 }
 @media (max-width: 600px) {
     .email-filter-container{
+        background-color: rgba(0, 0, 0, 0.700);
         padding: 15px;
     }
     .email-filter-container .filter-btns{

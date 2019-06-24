@@ -10,10 +10,10 @@
     list-style-type: none;
     margin-bottom: 5px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    transition: 0.3s;
 }
 .list-emails li:hover{
-    transition: 0.4s;
-    transform: scale(1.005);
+    transform: scale(1.009);
     
 }
 .div-star-details{
@@ -34,10 +34,10 @@
     overflow: hidden;
 }
 .readed{
-    background-color: rgba(88, 88, 88, 0.877);
+    background-color: rgba(88, 88, 88, 0.830);
 }
 .unread{
-    background-color: rgba(0, 0, 0, 0.860);
+    background-color: rgba(0, 0, 0, 0.820);
 }
 .icon-star{
     width: 23px;
@@ -98,5 +98,8 @@
     .email-imgs-preview .icon-trash{
         width: 30px;
         margin-left: 5px;
+    }
+    .unread{
+        background-color: rgba(0, 0, 0, 0.700);
     }
 }
