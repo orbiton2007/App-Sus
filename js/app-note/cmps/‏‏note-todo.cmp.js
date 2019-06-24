@@ -5,13 +5,8 @@ import noteService from "../services/notes-service.js"
 export default {
 
     template: `
-    <div class="grid-stack-item ui-draggable ui-resizable ui-resizable-autohide"
-            :id="note.id"
-            :data-gs-x="note.x" :data-gs-y="note.y"
-            :data-gs-width="note.w" :data-gs-height="note.h"
-            @click.nativ="updateLayout()">
-
-        <div class="note grid-stack-item-content" :style="getStyle">
+        <div class="note" :id="note.id" @mousedown.nativ.stop="dragStart($event)" @mouseup.nativ.stop="dragEnd($event)"
+            :style="getGrid">
             <img src="../../img/pin2.png" class="pin" v-if="this.note.isPinned"/>
 
             <img @click.stop="onChangeBcg()" class="bcg-btn" src="../../img/color.png"/>
@@ -28,7 +23,7 @@ export default {
             <input type="text" class="todo-input" ref="input" placeholder="Enter todo here"/> <button @click.stop="addTodo()">➕</button>
             <ul>
                 <li v-for="(todo,idx) in note.todos"
-                    @click.nativ="toggleDone(idx)" 
+                    @click.nativ.stop="toggleDone(idx)" 
                     :class="{'todo-done' : note.todos[idx].isDone}" 
                     :idx="idx">
                     {{todo.txt}}
@@ -38,15 +33,16 @@ export default {
 
             <input type="color" ref="bcgColorPicker" class="input-color" @change.nativ="changeBcg()"/>
         </div>
-    </div>
+   
     `,
     props: ['note'],
     data() {
         return {
-            x: this.note.x,
-            y: this.note.y,
-            w: this.note.w,
-            h: this.note.h,
+            clickedX: null,
+            clickedY: null,
+            diffX: null,
+            diffY: null,
+            el: null
         }
     },
     mounted() {
@@ -56,9 +52,9 @@ export default {
 
     },
     computed: {
-        getStyle(){
-            return `background-image: linear-gradient(${this.note.bcg}, rgba(173, 216, 230, 0.6));`
-        }
+        getGrid() {
+            return `grid-column-start: ${this.note.x}; grid-row-start: ${this.note.y};background-image: linear-gradient(${this.note.bcg}, rgba(173, 216, 230, 0.6));`
+        },
 
     },
     methods: {
@@ -113,36 +109,69 @@ export default {
             console.log('emit');
             this.$emit('del', this.note.id)
         },
-        updateLayout() {
-            let el = document.getElementById(`${this.note.id}`).dataset;
+        dragStart(ev) {
+            console.log('drag start', ev);
 
-            if (+el.gsWidth != this.w) {
-                console.log('w changed');
-                this.w = +el.gsWidth;
-                noteService.saveW(this.note.id, this.w)
-            }
-
-            if (+el.gsHeight != this.h) {
-                console.log('h changed');
-                this.h = +el.gsHeight;
-                noteService.saveH(this.note.id, this.h)
-            }
-
-            if (+el.gsX != this.x) {
-                console.log('x changed');
-                this.x = +el.gsX;
-                noteService.saveX(this.note.id, this.x)
-            }
-
-            if (+el.gsY != this.y) {
-                console.log('y changed');
-                this.y = +el.gsY;
-                noteService.saveY(this.note.id, this.y)
-
-            }
-            this.$emit('saveLayoutAll', true)
+            this.el = document.getElementById(`${this.note.id}`);
+            this.clickedX = ev.clientX;
+            this.clickedY = ev.clientY;
+            this.el.addEventListener('mousemove', this.move);
+            this.el.style.zIndex='100';
 
         },
+        move(ev) {
+            this.diffX = (this.clickedX - ev.clientX);
+            this.diffY = (this.clickedY - ev.clientY);
+
+            if (this.diffX < 0 && this.diffY < 0) this.el.style.transform = `translate3d(${this.diffX * -1}px,${this.diffY * -1}px, 0)`;
+            if (this.diffX < 0 && this.diffY > 0) this.el.style.transform = `translate3d(${this.diffX * -1}px,-${this.diffY}px, 0)`;
+            if (this.diffX > 0 && this.diffY > 0) this.el.style.transform = `translate3d(-${this.diffX}px,-${this.diffY}px, 0)`;
+            if (this.diffX > 0 && this.diffY < 0) this.el.style.transform = `translate3d(-${this.diffX}px,${this.diffY * -1}px, 0)`;
+        },
+        dragEnd(ev) {
+            console.log('drag end', ev);
+            this.el.removeEventListener('mousemove', this.move);
+            this.el.style.zIndex='unset';
+
+            if (this.diffX == 0) return;
+
+            if (this.diffX < 0) {
+                let griddDiffX = Math.round(this.diffX / 10) * -1;
+                let start = +this.el.style.gridColumnStart + griddDiffX;
+                this.el.style.gridColumnStart = start;
+
+                noteService.saveX(this.note.id, griddDiffX);
+                this.el.style.transform = `translate3d(0px,0px, 0)`;
+            } else if (this.diffX > 0) {
+                let griddDiffX = Math.round(this.diffX / 10);
+                let start = +this.el.style.gridColumnStart - griddDiffX;
+                this.el.style.gridColumnStart = start;
+
+                noteService.saveX2(this.note.id, griddDiffX);
+                this.el.style.transform = `translate3d(0px,0px, 0)`;
+            }
+
+            if (this.diffY < 0) {
+                let griddDiffY = Math.round(this.diffY / 10) * -1;
+
+                let start = +this.el.style.gridRowStart + griddDiffY;
+                this.el.style.gridRowStart = start;
+
+                noteService.saveY(this.note.id, griddDiffY);
+                this.el.style.transform = `translate3d(0px,0px, 0)`;
+            } else if (this.diffY > 0) {
+                let griddDiffY = Math.round(this.diffY / 10);
+                let start = +this.el.style.gridRowStart - griddDiffY;
+                this.el.style.gridRowStart = start;
+
+                noteService.saveY2(this.note.id, griddDiffY);
+                this.el.style.transform = `translate3d(0px,0px, 0)`;
+            }
+            this.clickedX = null;
+            this.clickedY = null;
+            this.diffX = 0;
+            this.diffY = 0;
+        }
 
 
     },

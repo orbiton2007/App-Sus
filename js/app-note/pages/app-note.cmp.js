@@ -46,7 +46,7 @@ export default {
         </div>
 
         <!-- unpinned render -->
-        <div class="grid-stack" data-gs-animate="yes">
+        <div class="unpinned-cont">
                 <component v-for="(note,idx) in notesUnpinned"
                 :is="note.type" :note="note" @pinEv="pinned"
                 @del="deleteNote" @saveLayoutAll="saveLayouts"/>
@@ -119,6 +119,7 @@ export default {
                     this.notesAll = notes;
                     this.notesUnpinned = notes.filter(note => !note.isPinned);
                 })
+            this.isShowBtns = false;
         },
         addTodoNote() {
             noteService.addTodoNote();
@@ -128,12 +129,15 @@ export default {
                     this.notesAll = notes;
                     this.notesUnpinned = notes.filter(note => !note.isPinned);
                 })
+            this.isShowBtns = false;            
         },
         showImgInput() {
             this.imgInput = true
+            this.isShowBtns = false;
         },
         showVideoInput() {
             this.videoInput = true
+            this.isShowBtns = false;
         },
         addImgNote() {
             noteService.addImgNote(this.$refs.imgInput.value);
@@ -146,6 +150,8 @@ export default {
                 })
 
             this.imgInput = false
+            
+
         },
         addVideoNote() {
             noteService.addVideoNote(this.$refs.videoInput.value);
@@ -158,6 +164,8 @@ export default {
                 })
 
             this.videoInput = false;
+       
+
         },
         search() {
             console.log('search:', this.$refs.search.value);

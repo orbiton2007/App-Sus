@@ -13,7 +13,9 @@ export default {
     addImgNote,
     addVideoNote,
     saveX,
+    saveX2,
     saveY,
+    saveY2,
     saveH,
     saveW
 }
@@ -35,9 +37,9 @@ function getNotes() {
 function createNotes() {
     let arr = [
         { id: utilService.makeId(), txt: 'This is my note! Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, aut ipsam optio mollitia temp ', type: 'note-txt', bcg:  utilService.getRandomColor(), isPinned: false, x: 0, y: 0, w: 4, h: 4 },
-        { id: utilService.makeId(), txt: 'My shopping list', todos: [{ txt: 'buy milk', isDone: false }, { txt: 'buy ugi', isDone: false }], type: 'note-todo', bcg:  utilService.getRandomColor(), isPinned: false, x: 0, y: 0, w: 4, h: 4 },
-        { id: utilService.makeId(), txt: 'Tommorow is another day :)', img: "./../../../img/sunrise.jpg", type: 'note-img', bcg:  utilService.getRandomColor(), isPinned: false, x: 0, y: 0, w: 4, h: 4 },
-        { id: utilService.makeId(), txt: 'Watch it when you have time', video: "https://www.youtube.com/watch?v=N_ZDvdczO6I", type: 'note-video', bcg:  utilService.getRandomColor(), isPinned: false, x: 0, y: 0, w: 4, h: 4 },
+        { id: utilService.makeId(), txt: 'My shopping list', todos: [{ txt: 'buy milk', isDone: false }, { txt: 'buy ugi', isDone: false }], type: 'note-todo', bcg:  utilService.getRandomColor(), isPinned: false, x: 5, y: 5, w: 4, h: 4 },
+        { id: utilService.makeId(), txt: 'Tommorow is another day :)', img: "./../../../img/sunrise.jpg", type: 'note-img', bcg:  utilService.getRandomColor(), isPinned: false, x: 10, y: 10, w: 4, h: 4 },
+        { id: utilService.makeId(), txt: 'Watch it when you have time', video: "https://www.youtube.com/watch?v=N_ZDvdczO6I", type: 'note-video', bcg:  utilService.getRandomColor(), isPinned: false, x: 15, y: 15, w: 4, h: 4 },
     ]
 
     return arr;
@@ -130,21 +132,46 @@ function saveX(id,x){
     getNotes()
     .then((notes) => {
         let idx = notes.findIndex(note => note.id === id);
-        notes[idx].x = x;
+        notes[idx].x += x;
         //improve: is there an option to get and save only 1 params instead of all array?
         storageService.store('notes', notes)
     })
 }
 
-function saveY(id,y){
+function saveX2(id,x){
     getNotes()
     .then((notes) => {
         let idx = notes.findIndex(note => note.id === id);
-        notes[idx].y = y;
+        notes[idx].x -= x;
         //improve: is there an option to get and save only 1 params instead of all array?
         storageService.store('notes', notes)
     })
 }
+
+
+
+function saveY(id,y){
+    getNotes()
+    .then((notes) => {
+        let idx = notes.findIndex(note => note.id === id);
+        notes[idx].y += y;
+        //improve: is there an option to get and save only 1 params instead of all array?
+        storageService.store('notes', notes)
+    })
+}
+
+function saveY2(id,y){
+    getNotes()
+    .then((notes) => {
+        let idx = notes.findIndex(note => note.id === id);
+        notes[idx].y -= y;
+        //improve: is there an option to get and save only 1 params instead of all array?
+        storageService.store('notes', notes)
+    })
+}
+
+
+
 
 function saveH(id,h){
     getNotes()
