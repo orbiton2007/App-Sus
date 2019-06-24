@@ -7,9 +7,9 @@ export default {
         <div class="note note-img"  @mousedown.nativ.stop="dragStart($event)" @mouseup.nativ.stop="dragEnd($event)"
             :style="getGrid" :id="note.id">
 
-            <img src="../../img/pin2.png" class="pin" v-if="this.note.isPinned"/>
+            <img src="img/pin2.png" class="pin" v-if="this.note.isPinned"/>
 
-            <img @click.stop="onChangeBcg()" class="bcg-btn" src="../../img/color.png"/>
+            <img @click.stop="onChangeBcg()" class="bcg-btn" src="img/color.png"/>
             <span class="title">Image Note</span>
             <button @click.stop="deleteNote()" class="del-btn">🗑️</button>
             <button @click.stop="pinNote()" class="pin-btn">📌</button> 

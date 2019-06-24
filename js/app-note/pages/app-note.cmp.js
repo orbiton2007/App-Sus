@@ -14,26 +14,26 @@ export default {
         <!-- image modal -->
         <div v-if="imgInput" class="upload-modal">
                 <input type="text" ref="imgInput" placeholder="Enter img URL"/>
-                <img class="upload-btn" @click="addImgNote()" src="../../img/upload.png" />
-                <img @click.nativ="closeModal()" class="close-modal" src="../../img/close.png" />
+                <img class="upload-btn" @click="addImgNote()" src="img/upload.png" />
+                <img @click.nativ="closeModal()" class="close-modal" src="img/close.png" />
         </div>
 
         <!-- image modal -->
         <div v-if="videoInput" class="upload-modal">
                 <input type="text" ref="videoInput" placeholder="Enter video URL"/>
-                <img class="upload-btn" @click="addVideoNote()" src="../../img/upload.png" />
-                <img @click.nativ="closeModal()" class="close-modal" src="../../img/close.png" />
+                <img class="upload-btn" @click="addVideoNote()" src="img/upload.png" />
+                <img @click.nativ="closeModal()" class="close-modal" src="img/close.png" />
         </div>
 
         <div class="note-header">
             <input type="text" ref="search" placeholder="🔎 search here"  @input.nativ="search()"/>
             
-            <img class="header-btn" :class="{'text-btn': isShowBtns}" @click.nativ="addTxtNote()" src="../../img/txt.png"/>
-            <img class="header-btn" :class="{'list-btn': isShowBtns}" @click.nativ="addTodoNote()" src="../../img/list.png"/>
-            <img class="header-btn" :class="{'video-btn': isShowBtns}" @click.nativ="showVideoInput()" src="../../img/video.png"/>
-            <img class="header-btn" :class="{'image-btn': isShowBtns}" @click.nativ="showImgInput()" src="../../img/img.png"/>
+            <img class="header-btn" :class="{'text-btn': isShowBtns}" @click.nativ="addTxtNote()" src="img/txt.png"/>
+            <img class="header-btn" :class="{'list-btn': isShowBtns}" @click.nativ="addTodoNote()" src="img/list.png"/>
+            <img class="header-btn" :class="{'video-btn': isShowBtns}" @click.nativ="showVideoInput()" src="img/video.png"/>
+            <img class="header-btn" :class="{'image-btn': isShowBtns}" @click.nativ="showImgInput()" src="img/img.png"/>
          
-            <img class="plus-btn" @click.nativ="showBtns()" src="../../img/plus1.png"/>
+            <img class="plus-btn" @click.nativ="showBtns()" src="img/plus1.png"/>
         </div>
         
         <!-- pinned render -->
