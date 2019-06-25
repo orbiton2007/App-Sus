@@ -10,10 +10,10 @@
     list-style-type: none;
     margin-bottom: 5px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    transition: 0.3s;
 }
 .list-emails li:hover{
-    transform: scale(1.009);
+    transition: 0.4s;
+    transform: scale(1.005);
     
 }
 .div-star-details{
