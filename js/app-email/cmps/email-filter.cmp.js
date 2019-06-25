@@ -5,7 +5,7 @@ export default {
         <section class="email-filter-container flex">
             <div class="filter-btns">
                 <button @click="emitFilterAll">All</button>
-                <button @click="emitFilterReaded">Readed</button>
+                <button @click="emitFilterReaded">Read</button>
                 <button @click="emitFilterUnreaded">Unread</button>
             </div>
             <div class="filter-input">
