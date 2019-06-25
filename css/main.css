@@ -111,14 +111,14 @@ li{
     cursor: pointer;
   } 
   img:focus{ 
-  animation:runningHorse 40s;
+  animation:runningHorse 10s;
   }
   @keyframes runningHorse{
     from{
       margin-left: -20;
     }
     to{
-      margin-left:100%;
+      margin-left:65%;
      }
   }
   
